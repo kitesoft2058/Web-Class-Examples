@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script type="text/javascript">
+		function clickBtn(){
+
+			var n=0;
+			while(true){
+				n++;
+				document.getElementById('hh').innerHTML=n;
+				//무한반복문을 실행하면 화면에 그리는 작업도 못함. 
+			}
+
+		}
+
+		function clickBtn2(){
+			
+			if( typeof(w)=="undefined"){
+
+				// Worker는 웹서버에서 정상 동작함. (dothome에서 테스트... 클라이언트에서는 IE만 일부 동작함.)
+				w= new Worker("worker.js");
+
+				//worker가 포스트로 보낸 메세지 받기..
+				w.onmessage= function(event){
+					document.getElementById('hh').innerHTML=event.data;
+				};
+
+			}else{
+				alert('이미존재함..');
+				document.getElementById('hh').append="worker exist!";
+			}		
+			
+		}
+
+		function clickBtn3(){
+			w.terminate();
+			w=undefined;
+		}
+	</script>
+</head>
+<body>
+	<button onclick="clickBtn()">무한 반복!!</button>	
+	<hr/>
+	<h2 id="hh">결과</h2>
+	<hr/>
+	<button onclick="clickBtn2()">start Worker</button>
+	<button onclick="clickBtn3()">stop Worker</button>
+
+
+	<!-- 메인스레드의 작업 가능여부 테스트 -->
+	<button onclick="alert('clicked!!')">button</button>
+
+
+	<hr/>
+	<h3>Worker에게 메세지 전달..</h3>
+
+
+	<!-- 워커에게 메세지 보내는 것도 가능.. -->
+	<input type="text" name="" id="in1">	
+	<button onclick="aaa()">send to Worker</button>
+	<input type="text" name="" id="in2" size=40>
+	<script type="text/javascript">
+		function aaa(){
+
+			var v= document.getElementById('in1').value;
+
+
+			w2= new Worker("worker2.js");
+			w2.postMessage(v);
+
+			w2.onmessage= function(event){				
+				document.getElementById('in2').value = event.data;
+			}
+
+		}
+	</script>
+
+
+	<!-- 연습문제 풀기... p.531 -->
+	
+
+</body>
+</html>

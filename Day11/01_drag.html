@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+		div#cart{
+			width: 400px; height: 150px; padding: 10px; border: 1px dotted red;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		var overTarget= false;
+		var id;
+
+		function startDrag(){
+			//이벤트 객체의 드래그 트랜스퍼 객체에게 이벤트 발생자의 식별자(id값)를 설정!
+			event.dataTransfer.setData("Text", event.target.id);
+
+			//이렇게 전역변수로 id를 저장해도 됨
+			id= event.target.id;
+		}
+
+		function overDrag(){
+			overTarget= true;
+			//요소 웨에 요소가 놓여질 수 없도록 되어 있는 디폴트값.을 방지하도록 하여 드롭되도록.
+			event.preventDefault();
+		}
+
+		function leaveDrag(){
+			overTarget= false;
+		}
+
+		function dropDrag(){
+			// //드래그가 발생할 때 저장한 id값을 통해 요소를 찾아오기.
+			// var e= document.getElementById( event.dataTransfer.getData('Text'));
+			// //찾아온 e를 타겟에게 추가하기. 
+			// event.target.appendChild( e );
+		}
+
+		function endDrag(){
+			//endDrag에서는 event.dataTransfer.getData('Text')이 안됨. 이벤트가 끝나서 정보가 없음.
+			if(overTarget) {
+				
+				//드래그가 발생할 때 저장한 id값을 통해 요소를 찾아오기.
+				var e= document.getElementById( id);
+				//찾아온 e를 타겟에게 추가하기. 
+				document.getElementById('cart').appendChild( e );
+
+				overTarget= false;
+
+			}
+
+		}
+		
+	</script>
+</head>
+<body>
+
+	<div id="cart" ondragover="overDrag()" ondrop="dropDrag()" ondragleave="leaveDrag()"></div>
+
+	<!-- draggable="true"는 안해도 자동 드래그 가능. -->
+	<img src="computer.png" width="150" height="150" id="img01" ondragstart="startDrag()" ondragend="endDrag()">
+	<img src="notebook.png" width="150" height="150" id="img02" ondragstart="startDrag()" ondragend="endDrag()">
+
+</body>
+</html>

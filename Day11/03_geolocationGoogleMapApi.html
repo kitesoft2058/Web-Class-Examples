@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+		#map{
+			width: 100%;
+			height: 400px;			
+		}
+		/*너비와 높이가 지정되지 않으면 읽어지지 않음.*/		
+	</style>
+
+	<!-- Google지도 api 사용 스크립트 추가. API키발급-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpmFGPtJiVli9MlTU9-JlSek6Yu5j5INY&callback=initMap"
+    async defer></script>
+
+	<script type="text/javascript">
+
+		function showMap(){
+
+			//지도가 보여질 요소 찾아오기
+			var e= document.getElementById('map');
+
+			//요소에 붙일 Map객체 생성 및 설정값 적용.
+			//var mrhi= '37.562161, 127.035199';						
+
+			//생성자 함수 Map(mapDiv:Node, opts?:MapOptions )			
+			map= new google.maps.Map( e, {  center:{lat:37.562161, lng:127.035199}, zoom:14 } );
+		}
+
+
+		//다른 방법으로 지도 그리고 마커 표시하기......
+		function showMarker(){
+			//지도가 보여질 요소
+			var e= document.getElementById('map');
+
+			//원하는 좌표객체.
+			var mrhi= new google.maps.LatLng(37.562161, 127.035199);
+
+			//표시되는 지도의 옵션객체
+			var opts= {
+				center: mrhi,
+				zoom : 14
+			}
+
+			//지도 보이기..
+			var map= new google.maps.Map( e, opts );
+
+			//지도에 붙일 마커객체 만들기
+			//생성자함수의 파라미터로 마커설정값 객체 전달.
+			var marker= new google.maps.Marker({
+				position : mrhi,
+				title:"미래능력개발교육원" //마커에 마우스 놓고 있으면 보이는 tooltip
+			});
+
+			//마커 추가하기..
+			marker.setMap( map );
+
+			//마커 클릭에 반응하기..
+			marker.addListener('click', function(){
+				//alert();
+				open('http://www.mrhi.or.kr', '_blank');
+			});
+
+
+			//두번째 마커 추가..및 마커 이미지..변경.
+			var station= new google.maps.LatLng(37.561196, 127.038498);
+			var img= 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+
+
+			var marker2= new google.maps.Marker({
+				position: station,
+				title : "왕십리역",
+				icon : "access.png",
+				map: map  //이렇게 마커에 속성값으로 setMerker도 가능함.
+			});
+
+			//마커 클릭시 애니메이션..
+			marker2.addListener('click', function(){
+
+				//마커가 바운스 함...(무한반복)			
+				//marker2.setAnimation(google.maps.Animation.BOUNCE);		
+
+				//누를때 마타 토글도 가능..
+				if(marker2.getAnimation()==null){ 
+					marker2.setAnimation(google.maps.Animation.BOUNCE);
+				}else{
+					marker2.setAnimation(null);
+				}
+			});
+
+
+			//마커가 보여질때 애니메이션 처리도 가능함..(여러개의 마커도 생산 가능..)
+
+			//왕십리역 약국들...구글 지도에서 좌표값들 얻오오기..
+			var pharmacys=[
+				["희망약국", 37.562516, 127.035679],
+				["이수프라자약국", 37.561155, 127.034560],
+				["연세우리약국", 37.560710, 127.035978],
+				["왕십리약국", 37.562162, 127.032171]
+			];
+
+			for(var i=0; i<pharmacys.length; i++){
+				var pos= new google.maps.LatLng(pharmacys[i][1], pharmacys[i][2]);
+
+				var m= new google.maps.Marker({					
+					position: pos,
+					title : pharmacys[i][0],
+					icon : "button-red.png",
+					animation: google.maps.Animation.DROP,
+					map: map  //이렇게 마커에 속성값으로 setMerker도 가능함								
+				});
+
+				m.addListener('click', function(){
+					alert(this.getTitle());
+				});
+							
+			}
+
+
+		}//show marker
+	</script>
+
+	
+
+</head>
+<body>
+
+	<button onclick="showMap()">show map</button>
+	<button onclick="showMarker()">show marker</button>
+	<div id="map"></div>
+
+</body>
+</html>

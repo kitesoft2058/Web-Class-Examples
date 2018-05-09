@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+	<!-- 보안상의 문제로 파일리드는 사용자가 input으로 선택한 파일만 읽을 수 있음. 파일쓰기도 보안문제로..불가능. -->
+	<input type="file" name="" id="in1">
+	<button onclick="readFile()">파일 읽기</button>
+	<textarea id="ta" rows=10 cols="30"></textarea>
+	<script type="text/javascript">
+
+		function readFile(){
+
+
+			var f = document.getElementById('in1').value; //value는 file의 실제 경로가 오지 않음.
+			alert(f); //경로가 fake경로임.: 파일명만 알 수 있음.
+
+			//파일객체 필요..
+			var files= document.getElementById('in1').files; //리턴값은 FileList객체(File객체들의 배열)
+
+			//PHP의 files전달과 동일함..
+			alert( files[0].name +"\n"+ files[0].size+"\n"+ files[0].type);	
+
+
+			//파일 리더 객체 생성
+			var fr= new FileReader();
+
+			//읽기요청의 결과를 콜백으로 받기
+			fr.onload= function(){
+			 	//alert( fr.result );
+			 	document.getElementById('ta').innerHTML= fr.result;
+			}
+
+			//파일리더에게 텍스트로 파일 읽기 요청..
+			fr.readAsText( files[0], "utf-8");
+
+		}
+		
+
+	</script>
+
+</body>
+</html>

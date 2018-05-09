@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<!-- 실제 모바일 에서 구동해보기.. 해도면..viewport문제로 너무 작게 보임. -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+	<script type="text/javascript">
+		function clickBtn(){
+			navigator.geolocation.getCurrentPosition( function( position ){ //OK
+
+				//alert();
+
+				var lat= position.coords.latitude;
+				var lng= position.coords.longitude;
+
+				document.getElementById('target').innerHTML= lat +" , "+lng;
+
+				//지도로 현재 위치 보기
+				//google지도의 static map 지도 보기
+				var url="http://maps.google.com/maps/api/staticmap?center=" + lat+","+lng+"&zoom=18&size=500x300&sensor=false$markers=icon" ;
+
+				var pos= lat+","+lng;
+
+				var url="http://maps.googleapis.com/maps/api/staticmap?center="+pos+"&zoom=14&size=600x600&sensor=false&markers=icon:http%3A%2F%2Ftinyurl.com%2F2ftvtt6|"+pos;
+
+				var url="http://maps.googleapis.com/maps/api/staticmap?center="+pos+"&zoom=14&size=500x300&sensor=false&markers=icon:http://www.google.com|"+pos;
+				open( url);
+
+				//iframe에 지도 보기기
+				//document.getElementById('map');
+
+
+			}, function(error){//ERROR
+
+				var str;
+
+				switch(error.code){
+					case error.PERMISSION_DENIED:
+						str="사용자 거부";
+					break;
+
+					case error.POSITION_UNAVILABLE:
+						str="지리정보 없음";
+					break;
+
+					case error.TIMEOUT:
+						str="시간초과";
+					break;
+
+					case error.UNKNOWN_ERROR:
+						str="알수없는 에러";
+					break;
+				}
+
+				document.getElementById('target').innerHTML= str;
+
+			});
+		}
+
+
+		var id;
+		function clickBtn2(){
+
+			id= navigator.geolocation.watchPosition( function( position){
+
+				var lat= position.coords.latitude;
+				var lng= position.coords.longitude;
+
+				document.getElementById('target').innerHTML= lat +" , "+lng;
+
+			});
+
+		}
+
+		function clickBtn3(){
+
+			navigator.geolocation.clearPosition( id );
+
+		}
+	</script>
+</head>
+<body>
+
+	<button onclick="clickBtn()">my locatioin</button>
+	<h3 id="target">location</h3>
+
+	<button onclick="clickBtn2()">위치 자동 업데이트 watch</button>
+	<button onclick="clickBtn3()">위치 자동 업데이트 종료 clear</button>
+
+
+
+
+
+</body>
+</html>

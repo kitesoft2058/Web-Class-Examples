@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script type="text/javascript">
+
+		window.onload= function(){
+
+			//SSE( Sever-Sent- Event) - 서버가 필요할때 이벤트를 푸시..
+			// 반대개념을 polling방식이라 함.(ex. ajax, http통신.)
+
+			// 웹페이지의 내용 구성을 새로고침 없이도 일정간격으로 (DB를)자동 갱신시킬때 유용..(페이스북)
+
+			// 서버로 부터 push서비스 받기...(기본 3초마다.. 지속적으로 요청하지 않아도...)
+			// 이벤트 소스 객체 생성
+			es= new EventSource('08_push.php?id=sam&msg=hello');
+
+			//이벤트 소스로 부터 메세지 받기
+			es.onmessage= function( event ){
+				document.getElementById('aa').innerHTML+= event.lastEventId+" : ";
+				document.getElementById('aa').innerHTML+= event.data+"<br/>";
+			}
+
+		};
+
+		function send(){
+
+			//기존 서버의 이벤트 서버 닫기..(push종료..)
+			es.close();
+
+			var msg= document.getElementById('in1').value;
+
+
+			es= new EventSource('08_push.php?id=lee&msg='+msg);
+
+			//이벤트 소스로 부터 메세지 받기
+			es.onmessage= function( event ){
+				document.getElementById('aa').innerHTML+= event.lastEventId+" : ";
+				document.getElementById('aa').innerHTML+= event.data+"<br/>";
+			}
+			
+		}
+
+	</script>
+</head>
+<body>
+
+	<input type="text" name="" id="in1">
+	<button onclick="send()">send</button>
+
+	<div id="aa"></div>
+
+</body>
+</html>
