@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script type="text/javascript">
+		
+		// 리터럴객체든, 생성자함수를 이용한 객체든 모두 멤버메소드가 객체마다 존재함.
+		// 같은 객체자료형 마다 메소드가 하나만 존재하도록 하느것...
+		function Person(name, age){
+			this.name= name;
+			this.age= age;
+		}
+
+		// Person자료형에 하나만 존재하는 메소드(자바에서는 당연한...) 추가
+		Person.prototype.show= function(){
+			document.write("Person : "+ this.name+" - "+ this.age+"<br/>");
+		}
+
+		var p1= new Person("aaa", 10);
+		var p2= new Person("bbb", 20);
+
+		p1.show();
+		p2.show();
+
+
+		// prototype 메소드는 여러개 추가도 당연 가능함.
+		Person.prototype.getName= function(){
+			return this.name;
+		}
+
+		document.write("getName : "+ p2.getName() +"<br/>");
+
+		// 클래스 변수
+		document.write("<hr/>");
+		document.write("<h4>클래스 변수</h4>");
+		// Javascript에서 static 변수(클래스 변수)의 역할을 수행하는 것이 prototype
+		Person.prototype.addr="seoul";
+
+		document.write("p1 addr : "+ p1.addr+"<br/>");
+		document.write("p2 addr : "+ p2.addr+"<br/>");
+
+		p2.addr="busan";//<-이건 property를 건드린것이 아니라 p2에 addr 인스턴스 속성을 추가한것임.
+		Person.prototype.addr="incheoun";//클래스변수이므로.. 이를 건드리려면. 이렇게 해야함.
+		document.write("p1 addr : "+ p1.addr+"<br/>");
+		document.write("p2 addr : "+ p2.addr+"<br/>");
+
+		//프로타입은 일종의 상속같은 개념임.  p.342 프로토타입 체인..
+		document.write("<hr/>");
+		document.write("<h4>Object의 존재와 함수 오버라이딩</h4>");
+
+		document.write( p2 +"<br/>");  //<--모든 객체의 toString()이 호출됨.
+		document.write( p2.toString() +"<br/>");
+
+		// 오버라이딩.....
+		p2.toString= function(){
+			document.write("p2 toString() overriding..");
+		}
+
+		p2.toString();
+
+		//Object의 기본 메소드들... 꼭 할 필요 없음.....p.343
+		document.write("<hr/>");
+		document.write("<h4>Object객체의 메소드들</h4>");
+
+		document.write( p1.valueOf()+"<br/>"); //toString()과 같음..?
+		document.write( p1.hasOwnProperty('name')+"<br/>");
+		document.write( p1.constructor+"<br/>");
+
+
+		// 특이점....지역변수를 객체 생성자에 사용하기....
+		document.write("<hr/>");
+		document.write("<h4>지역변수를 객체생성자함수에서 사용</h4>");
+
+
+		function Car(model, color){
+			var abc=4;//멈버 변수(property)가 아님 ;
+
+			this.model=model;
+			this.color=color+abc;
+			
+		}
+
+		var c= new Car("aa", 10);
+		document.write(c.model+" , "+ c.color+"<br/>");
+		document.write(c.abc+"<br/>");
+
+	
+
+		// 프로토타입에 객체를 넣을 수도 있음. (일종의 상속)
+		function Hello(){
+			this.a=10;
+			this.b=20;
+		}
+		//일종의 상속!!
+		Hello.prototype= {name:"aa", age:20};
+
+		var h= new Hello();
+		alert( h.a+" , "+ h.b + " , " + h.name +" , "+ h.age);
+
+
+	</script>
+</head>
+<body>
+
+
+</body>
+</html>

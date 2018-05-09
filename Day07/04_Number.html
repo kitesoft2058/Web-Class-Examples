@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script type="text/javascript">
+		//2. Number (Wrapper객체.. - like. Integer)
+		document.write("<hr/>");
+		document.write("<h4>Number</h4>");
+		//수치형과 Number는 다름.
+		var a=10;
+		var b= new Number(10);
+
+		document.write( typeof(a) +"<br/>");
+		document.write( typeof(b) +"<br/>");
+		document.write( (a===b) +"<br/>"); //자료형이 다름. false
+
+		//Number객체의 기능들.(메소드들)
+		var num= new Number(123.456);		
+
+		//1) 지수표현식
+		document.write( num.toExponential() +"<br/>");
+		document.write( num.toExponential(2) +"<br/>"); //소수점 2자리까지만...
+
+		// num= 0.0000012456;
+		// document.write( num.toExponential() +"<br/>");
+		// document.write( num.toExponential(2) +"<br/>"); //소수점 2자리까지만...
+
+		//2) 소수점 자르기(고정소수점 방식)
+		document.write( num.toFixed() +"<br/>");
+		document.write( num.toFixed(2) +"<br/>"); //소수점 2자리까지만...
+
+		//3) 유효숫자 지지정( precision :명확한 ) -지수표현식은 소수점 아래부터의 개수.
+		 //실습 no
+		 document.write( num.toPrecision(2) +"<br/>");
+
+		 //3) 진법 변환 표기(string으로)
+		 var num= new Number(10);
+		 document.write( num.toString() +"<br/>");    //10진법
+		 document.write( num.toString(16) +"<br/>");  //16진법
+		 document.write( num.toString(8) +"<br/>");   //8진법
+		 document.write( num.toString(2) +"<br/>");   //2진법
+
+
+		//수치형은 Number객체로 자동 wrapping됨.
+		var a= 255;
+		document.write( a.toString(16) +"<br/>");
+
+		//직접 수치형에 적용할 때는 소수점 표기해야함.			
+		document.write( 10.54321.toFixed(2) +"<br/>");
+		document.write( 10.0.toString(2) +"<br/>"); 
+		// document.write( 10.toString(2) +"<br/>"); //<=error
+
+
+		//특정 자리수까지의 같은 수인지 판별에 사용할 수 있음. p.352 예제로 소개!
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

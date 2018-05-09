@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script type="text/javascript">
+
+		// 자바에서 객체의 2가지 종류
+		//1. 내장객체 : document, window, navigation...etc... Date(), String(), Number(), Array()...
+		//2. 사용자정의 객체 .. 
+		
+		//객체 생성 2가지 방법
+		//1. 리터럴 객체
+		var person={
+			// 멤버변수 - 속성 property
+			name: "sam",
+			age: 20,
+
+			// 멤버함수 - 메소드
+			show: function (){
+				// document.write('aaa'+"<br/>");
+				//document.write( "show : "+ name+ " , "+ age +"<br/>"); //<-this키워드 반드시 필요.
+				document.write( "show : "+ this.name+ " , "+ this.age +"<br/>");
+			}
+		}
+
+		//객체 멤버(속성)출력
+		document.write("name:"+ person.name+" , ");
+		document.write("age:"+ person.age+"<br/>");
+
+		//객체 메소드 호출
+		person.show();
+
+
+		//새로운 리터럴 객체를 만드려면 다시 생성!
+		var person2={
+			// 멤버변수 - 속성 property
+			name: "robin",
+			age: 25,
+
+			// 멤버함수 - 메소드
+			show: function (){
+				document.write( "show : "+ this.name+ " , "+ this.age +"<br/>");
+			},
+
+			// 멤버함수 - 파라미터 가능
+			add: function(a, b){
+				var c= a+b;
+				document.write( "add : "+ c +"<br/>");
+			}
+		}
+
+		person2.show();
+		person2.add(5, 3);
+
+		person2.show(4, 8); //<- 파라미터 없는데 줘도 상관없음.
+		//person.add(5, 3);  //<-error.  : person1객체에는  add()없음. 		
+
+
+		//자바 스크립트의 객체는 유연하기때문에 객체생성 후 객체의 속성과 메소드의 추가가 가능합.
+		person.tel="01012345678";  //property 추가
+		document.write("name:"+ person.name+" , ");
+		document.write("age:"+ person.age+" , ");
+		document.write("tel:"+ person.tel+"<br/>");
+
+		// 메소드 추가
+		person.out= function(){
+			document.write( "out : "+ this.name+ " , "+ this.age +" , "+ this.tel+"<br/>");
+		}
+
+		person.out();
+
+		//값을 대입하지 않은 멤버변수(속성)을 출력하면??
+		document.write(person.addr); //속성을 추가한 것이고 값을 대입하지 않은 것이 됨. : undefined
+
+		document.write("<hr/>");
+
+		//리터럴 객체는 여러개의 속성과, 메소드가 있을때 생성때마다 작성해야 해서 불편함.
+
+
+		//2. 생성자함수를 이용한 객체생성
+		function Student(){
+			//속성선언
+			this.name= "aaa";
+			this.age= 23;
+			this.major= "android";
+
+			this.show= function(){
+				document.write( "student show : "+ this.name+ " , "+ this.age +" , "+ this.major+"<br/>");
+			}
+
+			//107번 라인 작업 후 메소드 추가
+			this.setMember= function(name, age, major){
+				this.name= name;
+				this.age= age;
+				this.major= major;
+			}
+
+		}
+
+		var s= new Student();
+		s.show();
+
+		var s2= new Student();
+		s2.name="bbb";
+		s2.age=30;
+		s2.major="frontend";
+		s2.show();
+
+		//property를 입력하는 메소드가 있으면 좋을 듯. setMember() 메소드..
+		var s3= new Student();
+		s3.setMember("ccc", 35, "publisher");
+		s3.show();
+
+
+		//여기까지 학습하고 나면 역시 생성자로 멤버(속성)을 입력하는 것이 좋겠죠.
+		function Stu(name, age, major){
+			this.name= name;
+			this.age= age;
+			this.major= major;
+			this.show= function(){
+				document.write("Stu : "+this.name+" , "+ this.age+ " , "+ this.major+"<br/>");
+			}
+
+			//아래 140번 라인 실행 후..
+			//getter, setter
+			this.getName= function(){
+				return this.name;
+			}
+
+			this.setName= function(name){
+				this.name= name;
+			}
+		}
+
+		var stu= new Stu("ddd", 40, "php");
+		stu.show();
+
+		//혹시 값을 안주면..당연 undefined;
+		var stu2= new Stu();
+		stu2.show();
+
+		//getter, setter
+		stu2.setName("Lee");
+		var name= stu2.getName();
+		document.write("name : "+ name+"<br/>");
+
+		/////////////// p.337 자동차 예제 실습///////////////////
+
+
+	</script>
+</head>
+<body>
+
+
+
+</body>
+</html>
