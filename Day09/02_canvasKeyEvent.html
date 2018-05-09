@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript">
+
+		//전역변수로서 이미지객체 생성
+		var imgPome= new Image();
+		imgPome.src= "enemy_a_01.png";
+
+		var x=200, y=250; // 이미지 가운데 좌표
+		var w=20, h=20; //절반 사이즈
+
+		var dx=1, dy=1;
+
+		var canvas;
+		var context;
+
+		var keycode;
+
+		var imgBack= new Image();
+		imgBack.src= "back.jpg";
+
+
+		function loaded() {
+			//window.open으로 연 윈도우만 resizeTo()가능함.
+			canvas= document.getElementById('c1');
+			context= canvas.getContext('2d');
+
+			runGame();
+			//10ms마다 runGame()다시 실행.
+			setInterval(runGame, 10);
+		}
+
+		function runGame(){
+			moveAll();//움직이기.
+			drawAll(); //그리기
+
+			// //행운의 편지...
+			// //10ms후에 다시 runGame()실행
+			// setTimeout(runGame, 10);
+		}
+
+		function moveAll(){
+			x+=dx;
+			y+=dy;
+
+			if(x<=w || x>=400-w) dx=-dx;
+			if(y<=h || y>=500-h) dy=-dy;
+		}
+
+		function drawAll(){
+			//그리기 전에 화면의 이미지 지우기..
+			context.clearRect(0,0,400,500);
+			context.drawImage(imgBack, 0, 0, 400, 500);
+			context.drawImage(imgPome, x-w, y-h, w*2, h*2);			
+			context.drawImage(imgPome, x-w+40, y-h, w*2, h*2);
+
+
+			context.font="30px sans-serif";
+			context.fillText(keycode, 10, 40);
+		}
+
+		// 키보드의 방향키입력은 onkeydown이나 onkeyup에서만 가능함.
+		function keydown(){ 
+			keycode= event.keyCode;
+			switch(keycode){
+				case 37: dx=-1; break; //LEFT
+				case 38: dy=-1; break; //UP 
+				case 39: dx=1; break;  //RIGHT
+				case 40: dy=1; break;  //BOTTOM
+
+				default: dx=1; dy=1; //Auto
+			}
+		}
+
+		function keyup(){
+			keycode= event.keyCode;
+			if(keycode>=37 && keycode<=40){
+				dx=0; dy=0;
+			}
+		}
+
+
+		var sd= new Audio('aaa.mp3');
+		sd.volume=0.2;
+		sd.loof= true;
+		sd.play();
+		
+	</script>
+</head>
+<body onload="loaded()" onkeydown="keydown()" onkeyup="keyup()">
+
+	<canvas width="400" height="500" style="border: 2px solid black;" id="c1"></canvas>
+
+</body>
+</html>
