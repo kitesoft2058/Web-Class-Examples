@@ -1,0 +1,966 @@
+﻿웹표준(HTML,CSS,Javascript,Jquery) 수업진행순서
+
+1. 웹서비스 개요 : PPT  (1시간)
+
+  - 웹표준수업에 대한 개발가이드 사이트
+    1) www.w3c.org - 웹표준 협의체
+    2) www.w3schools.com - 웹표준(HTML, CSS, Javascript, JQuery, PHP, SQL) 공식 도움 및 교육사이트  
+
+
+  - HTML 기본 구조및 용어 설명(p.18-23)
+   0) <html><head><body>구조 소개..     
+     - 3개 구성요소는 생략이 가능하지만 UI구분이 없으므로 나중에 더 힘들어짐 : 제목줄은 문서의 이름(text.html)로 표시   
+       (브라우저는 근본적으로는 문서뷰어 프로그램이므로)
+ 
+     - 하나의 html문서안에 여러개의 <html>이 있으면 차례로 처리되어 배치되기는 하지만 <title>은 첫번째것만 적용됨)
+   1) element : (태그+콘텐츠)
+   2) tag : (시작태그와 종료태그)
+   3) attribute : 속성 - 시작태그에만 작성( 이름="값" 형태 - 작은타옴표도가능함.(작은타옴표안에 큰타옴표 표시가능 ) 
+   4) <!DOCTYPE html> : HTML문서의 버전 정의 - p.22참고 - 생략가능하지만 버전정보가 없으니 브라우저마다 동작을 확보활수없음)
+
+   5)HTML맛보기 : PPT자료로 소개.
+
+
+  - 개발환경 : SublimeText 설치 및 환경설정 , Chrome브라우저, (firefox, opera, safari, swing) 
+    0) 편집기 : SublimeText, Visual Studio Code, 노트패드, EditPlus, 드림위버(디자이너위주), 앱타나(이클립스비슷)
+    1) View >> Side Bar >> Show Open Files
+    2) 왼쪽 사이드 메뉴에 작업폴더 드래그앤드롭(상단메뉴 : Project >> Add Folder to Project)
+ 
+    3) 미리보기 플러그인 : SideBarEnhancements (서브라임텍스트설정 및 플러그인.txt)
+
+
+   -- 실습 ------------------------------------------
+    * html 기본구조 만들어보기 - 브라우저에 다른 파일형식의 문자보여주기
+    * 연습문제 풀어보기. p.24 ----------
+   --------------------------------------------------
+
+ 
+
+
+****** PPT로 기술 소개 후 실습을 통해 학습 ******
+    
+2. HTML 기본 Elements(요소) 소개
+
+  1)<body>에 직접 글 작성 
+     - 엔터와 띄어쓰기에 대한 소개 
+     -특수문자소개(출력은 모두 되지만 $, <>는 특정목적으로 사용됨) : HTML 특수문자코드표.hwp
+
+  2)<p> : paragraph(단락) - 한줄단위 (종료태그가 없어도 되지만 웹표준에 의거하여 쓰도록 권장!(XHTML에서는 error))
+  3)<br> : <p>전후 빈줄간격없이 강제 줄바꿈 <br/>  - 내용(콘텐츠가없는 element도 있음 : empty element) 
+  4)<pre> : Previous formatted text - 엔터나 공백문자가 그대로 추력...
+        (이게 좋다고 볼수는 없음... 검색기능에도 제한이 있고 글꼴도 영 어색함..
+  5)<h1>~<h6> : heading(제목) h1~h6 (글씨 사이즈를 기준으로 보지말고 문단구조를 기준으로 보도록) - 없는번호쓰면 안보임.
+  6)주석 : <!-- -->
+  7)텍스트서식 : b,i,strong,em,code(작성된텍스트가 code임을 의미하도록 표시),sup(superscript),sub(subscript)
+    - <b><i> 보다는 <strong>, <em>(emphasized : 강조)로 사용할 것을 권장.. 브라우저 검색엔진에서 노출되도록
+  8)<hr> : horizontal line : 수평선 - 브라우저의 너비만큼 수평선 (구분선 separator)  
+
+  -- 실습 ------------------------------------------
+
+   * 1)~ 8)에 대해 Day01>>01_text.html만들어서 하나씩 테스트 - 같이 작성해보기..(Day01>>01_text.html
+      <meta charset="utf-8"> 헤드에 무조건 쓰고 시작합시다.
+       -한국어는 "euc-kr","utf-8" 두가지가 있으나 웹표준HTML5에서 "utf-8"로 권장!
+
+   * p.33예제 작성해보기 (5분) Day01>>02_coffee.html
+  --------------------------------------------------
+
+
+
+
+  9)리스트 - 웹사이트의 메뉴구성들에 매우 빈번이 사용됨. HybridApp에서도 매우 많이 사용됨.(안드로이드 ListView같은것)
+     : 세부내용은 실습할때..
+    9.1)<ul> : UnOdered List 
+        - <li></li>리스트 항목
+    9.2)<ol> : Odered List
+    9.3)<dl> : Definition List
+           <dt> : definition title
+           <dd> : definition data
+
+  10)<a> : 링크(anchor) - 반드시 href=""속성이 있어야 링크표시됨.
+      10.1) target=""속성으로 링크된 위치 여는 곳 결정 
+        - "_blank"  : 
+        - "_self"(default) : 현재 윈도우에 로딩. 이전페이지는 뒤에 있음.(뒤로가기 화살표 활성화)
+        - "_top"
+        - "_parent"  
+
+      10.2) href=""경로의 종류 (p.37)
+         - 절대위치 : 다른 웹사이트의 페이지 - http://www.naver.com/index.html
+         - 상대위치 : 같은 서버공간의 다른 문서  - ../doc/info.html 
+         - 특정요소 : 현재 문서내에서 특정위치의 요소(id속성)로..이동   - "#help" 
+      
+     -실습시간에 소개- 
+     *<a>요소는 인라인(inline)요소여서 너비가 무조건 wrap_content임! (참고로 :너비속성(width="")을 지정도 안됨)
+     *실습시간에 이메일링크, 다운로드(zip파일,hwp파일) 링크 적용.
+     *<base>태그 : <head>영역에 사용하며, 모든 링크의 기본 디렉토리를 지정할 수 있음. 소개만. (p.39)
+
+
+  11)<img> : 종료태그가 없는 elements  - 인라인요소(inline요소)
+     -주요한 3개속성 : src, width, height
+
+      11.1) src=""속성 : 상대경로, 절대경로 모두 가능
+      11.2) width, height : 단위 - px(기본:생략가능), %이 있음. - 가급적 
+
+      11.3) alt : (alternate-대체) 이미를 못 보여줄 때 속성(chrome은 x아이콘이 없고, exploror는 x아이콘 생김)
+       * bodor는 경계선 그리기...
+
+     -이미지파일의 종류 : jpeg, png, gif (p.44참고)
+
+
+   -- 실습 ------------------------------------------
+
+   * 9)~ 11)에 대해 Day01>>03_ex.html만들어서 하나씩 테스트 - 같이 작성해보기..(Day01>>03_ex.html)     
+
+   * p.43예제 이미지 포함 웹페이지 작성해보기 (Day01>>04_coffee.html)
+
+   * p.45예제 섬네일(thumbnail) 작성해보기 (Day01>>05_thumbnaile.html, photo1.html, photo1.html  이미지들..(images, thumbnails))
+  --------------------------------------------------
+
+
+
+
+   12)<table> : 초기 전체 레이아웃구조에도 사용되었으나 현재는 표목적으로만 사용
+     - <tr>:테이블 row   ( 표의 한줄)
+     - <td>:테이블 데이터( 표의 셀이라고 칭함) 
+     - 테이블에 제목(header) 행을 추가하고 싶다면
+        -<th>: 테이블헤더 - 볼드체, 가운데정렬이 기본값.
+
+     *각 행(row)의 데이터(셀)개수가 다를 수 있음(실습을 통해 확인)
+
+     - 경계선(border) : 값이 클수록 외각테두리선의 두께가 굵어짐.(양각스타일)
+        - HTML5 웹표준에서는 CSS로 스타일을 적용하기에 사용을 권장하지 않음. 단순한 경계선으로 border="1"만 허용
+        - 교재(p.52 참고)에서는 border=""가 경계선이 없다는 의미로 사용된다지만 실제로는 그려짐. 의미만 없다는 것으로 통용됨.
+
+     - 셀병합 : rowspan="2",  colspan="3" 
+       *한줄만 있을때는 span의 영향이 없음. 여러줄일때만 비교대상이 있어서 span이 적용됨
+
+     - 테이블 전체 제목(caption)
+       *위치에 상관없이 무조건 표의 상단에 배치됨. 추후 CSS를 통해 위치조정 가능함.
+
+     - <td></td>에는 텍스트가 아닌 다른 어떤요소(element)든 포함될 수있음. (p.54)-(Day01>>06_table.html) 
+       * width="100%"도 소개.
+         - 셀 너비(width) 지정가능:default는 wrap_content
+         - 테이블의 전체 너비는 셀의 영역을 합한 사이즈가 기본이며 table에 width를 지정하면 셀들은 기본적으로 균등분할됨
+         - 내용물이 길면 width속성보다 wrap_content가 우선됨. (단, 텍스트가 한글이면 width에 영향을 주지 않고 자동 줄바꿈.)       
+         * %의 경우 본인의 부모요소의 너비를 기준으로 함.   
+
+       * 이미지 가운데 정렬은 추후 CSS에서 소개(<td>태그에 style="text-align: center;")적용 (margin :auto는 안됨!)
+
+
+
+    -- 테이블 실습 ------------------------------------------
+
+    * 12)에 대해 Day01>>06_tabe.html만들어서 하나씩 테스트 - 같이 작성해보기..(Day01>>06_table.html)     
+
+    * p.55예제 테이블 예제 작성해보기 (Day01>>07_table_ex2.html)
+    --------------------------------------------------
+
+
+
+
+ -- Day01 종합 실습 -------------이미지들은 교재소스코드 제공-------------------------------------------       
+
+    * p.56 개인 홈페이지 만들기 (Day01>>08_homepage.html)     
+    * p.57 커피전문점 웹페이지 만들기 (Day01>>09_coffe2.html,  menu.html, images폴더 이미지)
+
+    --- 연습문제 풀어보기. p.24 ----------
+ -------------------------------------------------------------------------------------------------------
+
+
+
+
+3. 멀티미디어(audio, video)와 입력양식(form, input) 
+   * <audio><video> 요소의 등장으로 인해 플래시나 ActiveX를 대체할 수 있게됨.
+
+ 1) <audio> - 주요속성 ( src, autoplay, controls, loop, volume0.0~1.0 ) :인라인 요소
+    - 오디오 파일형식 : mp3, wav, ogg :  mp3와 나머지 것 중 하나만 있어도 모든 브라이져에서 적용가능함. 
+    - 브라우저에 따른 음원의 유형에 대응하기 위해 <sourc>태그 사용
+
+     *type="audio/mp3"을 MIME(Multiporpose internet mail extensions)타입 이라 함.(p.69)
+
+
+    *파일형식 변환 온라인사이트 : http://online-convert.com (오디오, 비디오 모두 가능 p.69) 
+
+ 2) <video> - 주요속석: <audio>와 같되 poster속성이 하나더 있으며. width,height을 주는 것이 좋음. :인라인요소
+    - 비디오 파일형식 : mp4, webm, ogv
+   
+     *MIME타입 적용 type="video/ogg" <-- .ogv는 반드시 "video/ogg"로.. mp4와 webm은 그대로 쓰되 ogg로 해도 됨.
+
+
+
+ 3) <iframe> : (inline frame)웹페이지 안에 다른 웹페이지를 넣을 때 사용 (인라인요소)
+   3.1) src속성에 보여줄 웹페이지 소스위치 지정. <iframe src="hello.html" width="300" height="150"></iframe>	
+   3.2) 다른 웹서버의 사이트도 표시 가능 
+	<iframe src="http://mrhi2017.dothome.co.kr/index.html" width="300" height="150" seamless></iframe>
+	<iframe src="http://www.w3.org" width="300" height="150" seamless></iframe>
+
+   3.3) 링크<a>에 의해 열리는 파일의 target으로 iframe 지정(name속성) 
+	<iframe src="" name="aaa"></iframe>
+	<a href="http://www.w3.org" target="aaa">웹드와이드웹 공식 사이트</a>
+   
+   *seamless가 새로 추가되었으나 아닞 적용되는 브라우저가 보이지 않음..이유는 정확치 않음.(CSS로 처리해야 함)
+	<!-- 경계선 없애는 것은  frameborder=""로.   -->
+	<iframe src="hello.html" frameborder="" width="100%"></iframe>
+
+
+
+ 4) <div> : (divide) 웹페이지의 논리적 영역설정 -block요소
+    4.1) <h2><p>두요소를 하나의 영역으로 묶어서 style적용(backgroun-color, border, padding-left)
+        * 구조적으로도 한 영역으로 구분되면 식별도 좋음.
+    4.2) <div>의 블럭요소(block)특징 소개 - <p>태그안의 텍스트 중에 한 부분을 <div>로 영역설정하면..자동 블럭화되어 줄바뀜.
+       - <p> 안녕하세요 나는 <div style="color: blue">홍길동</div> 입니다.</p>      
+        
+
+ 5) <span> : 인라인(inline) 요소로서의 영역구분 - (4.2)의 문제 해결 
+     - <p> 안녕하세요 나는 <span style="color: blue">홍길동</span> 입니다. </p>
+
+
+    * <div>의 영역구분은 나중에 웹페이지의 헤더영역, 메뉴영역, 본문영역, 하단영역을 구분하는데 주요한 역할을 함.
+
+ 
+  -- 실습 ------------------------------------------
+
+   * 1)~ 5)에 대해 Day02>>01_ex.html만들어서 하나씩 테스트 - 같이 작성해보기..(Day02>>01_ex.html)     
+
+  --------------------------------------------------
+   
+
+
+
+ 6) <form> : 웹앱서버(php)에게 동적인 처리를 요구하는 요소(HTTP방식사용)
+    6.1) HTTP통신 방식 구조 소개(ppt) - request와 resonse, php스크립트( script: 네이티브언어를 쉽게 작성하도록 만든 언어)
+                                                          *PHP는 인터프리터 언어. 거의 대부분의 script언어는 인터프리터언어)
+
+    6.2) <form>태그 주요속성 : action, method
+       * action=""은 request를 처리하는 서버 스크립트주소 text.php
+
+       * method
+         - get방식 : URL뒤에 ?후 요청값 (key=value)형식으로 값 전달(parameter 구분자&)
+             *단점 : 길이제한(2048), 한글문제, 보안 취약성
+             *장점 : 뒤로가기 가능, 북마크(즐겨찾기) 가능
+           : 이런 장점때문에 게시글보기등에 get방식사용
+
+         - post방식 : 데이터가 Header에 포함되어 전송. <->get방식과 장단점이 정반대.(보통 로그인처리나 글 저장.)
+            *캐시저장도 안됨.
+
+
+     * 실습시간에 php서버에 올려서 적용해보기.
+
+
+ 7) <input> : 주요속성 - type(인풋박스의 모양), value(인풋박스의 값), name(서버전송시 key값) : 인라인요소
+      
+
+   *<input>의 여러type - 기본: p.85
+
+     - 설명은 ppt내용 위주( 세부사항은 실습을 통해 연습.)
+
+    7.1) text : 한줄입력. 너비지정 size="40" -(기본 20)           (CSS로도 - style="width: 300px; or 40em" CSS수업에서 소개)
+          *엔터키 먹지 않음. 너비를 넘어가면 자동으로 스크롤됨.
+    7.2) password : 비밀번호 한줄입력
+
+    7.3) radio : 라디오그룹단위로 같은 name을 써야 single choice가 됨. 
+      
+       7.3.1)<label for="">없이 라디오 생성. 글씨 선택시 버튼이 선택되지 않음.
+       7.3.2)<label for="">있으면 글씨를 눌렀을때 선택이 됨. id속성과 for속성 이용
+      
+      * checked <- 기본 체크상태 설정. 둘다 있으면 나중에 것이 적용됨.
+      * php에서는 선택된 라디오 인풋의 value값이 전달됨.
+
+    7.4 ) checkbox : 역시 같은 name을 사용-대신 배열이 이름[]에 배열기호가 있어야 함.. 특성은 radio와 같음.
+      *<label>안에 input넣으면 자동으로 for처럼 사용 가능.
+      * php에는 name의 값으로 배열로 전달됨.(get방식으로 보면. 같은 키값으로 &구분되어 선택된 값들 전송)
+
+    7.5) submit, reset : 버튼모양으로 생긴것으로 for안에서만 영향이 있음.
+
+    7.6) type="button"으로 onclick테스트(중복확인등의 작업가능 : 우선 경고창(alert)) 
+    7.7) <button> : <input type="button">과 모양과 동작이 같으나 <form>요소에서 <button>을 전송오류의 경우가 있으니 사용비 권장   
+
+    7.8) image버튼.
+      7.8.1) <button><img src=""></button> : 일반적인 이미지 버튼.
+      7.8.2) <input type="image" src="" alt="제출"> : form태그 안에서는 submit의 역할을 함.
+
+ 8) <textarea> : 여러줄 입력 - 주요속성 : rows="", cols="", name=""
+     *php에는 textarea의 텍스트영역의 값들이 전달.
+
+ 9) <select> : 콤보박스 <-여기에만 name지정
+      - <option>과 함께 사용. <-여기에 value지정
+
+     9.1) <select><option>적용 (name, value)
+       *name은 <select>,  value는 <option>에 작성
+       *selected속성.<option>에 적용.
+
+       *php는 선택된 option의 value가 전달 (키는 <select>의 name값)
+
+     9.2) <optgroup label=""> : 옵션에 그룹주기. label로 그룹명적용. 그룹명은 선택 안됨.
+
+
+ 10) <fieldset> : 영역의 그룹핑(테두리선과 라벨)
+       - <legend> : 테두리선에 들어가는 제목
+
+      *<legend>없으면 그냥 테두리선. 위치는 기본적으로 요소의 작성위치와 상관없이 상단왼쪽.
+
+
+ 11) <label> : <label for="">없이 라디오 생성. 글씨 선택시 버튼이 선택되지 않음.
+
+
+   --- 여기까지 php로 전송 실습------------------------------------------------ 
+    
+    * 7.1) ~11)에 대해 Day02>>02_input.html만들어서 하나씩 테스트 - 같이 작성해보기..(Day02>>02_input.html)
+    * php로 전송테스트 (Day02>>03_form.html) , getTest.php, postTest.php 
+   -----------------------------------------------------------------------------
+
+
+
+ 
+ 12> <input type="file"> : 파일선택윈도우가 보여짐. 
+      *주요속성 : accept="image/jpg,image/gif" <-리스트 보여지는 파일형식 지정
+
+     *<form>으로 서버에 전송시에 enctype="multipart/form-data" 속성이 반드시 필요.
+
+ 
+ 13) 추가된 inputType (p.93의 html5form.html)
+     * 타입들은 브라우저마다 다르게 보임 
+
+    13.1)날짜 선택 관련 : date, datetime(안됨), datetime-local, month, time, week
+    13.2)색상선택 : color : 색상선택 윈도우 보여짐
+    13.3) email : required속성 적용시 약간의 검증(@입력 형식검증)
+    13.4) tel : 생김세는 text타입과 같되 mobile에서는 번호키패드로 표시
+    13.5) serch : 텍스트 입력시 X 버튼이 오른쪽끝에 생겨서 쉽제 reset가능.
+    13.6) range : 주요속성: min, max, step, value
+    13.7) number :  주요속성: min, max, step, value (모바일에서 숫자키패드)
+    13.8) url :  required속성 적용시 약간의 검증(http://입력 형식검증)
+
+
+ 14) 추가된 input의 속성들 ( 더많은 내용은 w3schoole의 HTML Input Attributes 참고.)
+
+    *value속성 : input요소의 텍스트
+    
+    14.1) placeholder : 힌트
+    14.2) required : 반드시 입력해야하는 input요소(form태그안에서만 작동)
+    14.3) readonly : 글씨는 보이지만 수정은 불가!
+    14.4) autofocus : 
+    14.5) maxlength : 최대글자수 제한
+    14.6) autocomplete : 자동완성기능
+
+        <input type="text" name="" autocomplete list="datas"><br/>
+
+    	<datalist id="datas">
+    		<option value="canada">캐나다</option>
+    		<option value="china">중국</option>
+    		<option value="korea">한국</option>    		
+    	</datalist>
+
+     14.7) pattern : 정규표현식! - required속성과 함께 사용. (*title="형식이 맞지 않을때 보이는 글씨 속성")
+                    (Regular Expression)
+             *예전에는 Javascript에서 코드로 검새하는 작업을 했었음.!!(그때는 //  필요)
+         
+    <form>    	
+
+    	<!-- [영어소문자,대문자, 특수문자]는 1개이상으로 시작하며 [숫자]는0개 이상, @표시 있고
+         	 [영문, 숫자]한개 이상인 정규표현식.  -->
+         이메일:
+    	<input type="text" name="" pattern="[a-zA-Z!#$~%]+[0-9]*@[a-zA-Z0-9]+" required>
+    	<input type="submit" name="">
+    </form>
+
+    <form>
+    	<!-- 첫숫자는 2~3개 - 두번째는 3~4개  - 세번째는 4~5개 -->
+    	전화번호:
+    	<input type="text" name="" pattern="[0-9]{2,3}-[0-9]{3,44}-[0-9]{4,5}" required title="형식이 맞지 않을 때 보이는 글씨">
+    	<input type="submit" name="">
+    </form>
+
+
+ 15) <hidden> : 화면에 보이지는 않지만 서버 전송시에 값을 전달할때 사용.
+       
+
+     -- input2 실습 ------------------------------------------
+
+    * 12)!15) 에 대해 Day02>>04_input2.html만들어서 하나씩 테스트 - 같이 작성해보기..(Day02>>04_input2.html)     
+
+    * p.99예제 이메일 전송 폼 예제 작성해보기 (Day02>>05_formexex1.html) : 이메일전송 애플리케이션 선택창이 뜸.(win10), 실제 이메일전송을 JS후에
+    
+    * p.100예제 회원가입 폼 예제 작성해보기 (Day02>>06_formexex2.html)
+
+    --------------------------------------------------
+
+
+
+
+ -- Day02 종합 실습 -------------이미지들은 교재소스코드 제공-------------------------------------------       
+
+    --- 연습문제 풀어보기. p.102 ----------
+ -------------------------------------------------------------------------------------------------------
+
+    
+
+========================================================================================================
+===================== HTML 기초 수업 종료 ==============================================================
+========================================================================================================
+     
+
+========Day03==============    
+
+4. CSS기초(Cascading Style Sheets)   
+
+ 1) HTML과 CSS에 대한 개념소개 - ppt소개
+ 
+ 2) 선택자 :   선택자{속성:값;}
+
+    * <head>영역에 <style></style>안에 css 작성
+  
+
+   2.1) 타입선택자 : HTML요소의 이름 사용 
+    
+        h1{color:green;}
+
+
+   2.2) 전체선택자 : 문서안의 모든 요소
+
+        *{color:green;} 
+
+
+   2.3) 아이디선택자 : 특정요소 선택  - HTML의 요소에 id속성(<p id="aaa">) 적용
+                                       (같은 id여러요소에 적용가능하지만 권장하지 않음)
+
+       #아이디명{ property:value; } 
+
+
+   2.4) 클래스선택자 : 클래스 속성이 부여된 요소를 선택 - HTML의 요소에 class속성(<p class="aaa">) 적용
+
+       .클래스명{ color:green; } 
+
+
+   2.5) 선택자그룹 : 여러 선택자를 한번에 선택 : 가급적 띄어쓰기 없이 ,로 연결
+
+       h1,p,h2 { font-family:sans-serif; } 
+
+
+   2.6) 자손, 자식선택자 ( DOM(Document Object Model)트리에 대한 구조 이해 필요 p.118 )
+
+       자손 : body p  /*body 안에 모든 p요소*/
+       자식 : body>p  /*body 안에 직계 자식 p요소*/
+
+
+      * 주의할 것 (아래 3개의 상황 구분)
+
+       .aaa         : 클래스명이 aaa인 모든 요소
+
+       div .aaa     : div요소의 자손들중에서 클래스명이 aaa인 요소
+
+       div.aaa      : 클래스명이 aaa인 div요소 
+
+
+   2.7) 의사 선택자(pseudo-class 선택자) : 특정이벤트처리가 가능한 클래스가 있는 것으로 간주하여 선택
+
+       a:link   :visied   :hover   :active
+
+
+   2.8) 속성 선택자 : 특정 속성을 가지고 있거나 속성값이 어떤 것인 요소
+      
+       h1[title]{ color:blue;}
+       p[class='aaa']{ color:blue; }  
+
+
+ 3) 스타일시트 삽입위치
+   3.1)외부스타일   : 별도의 .css파일 <head>안에 <link>
+   3.2)내부스타일   : <head> 안에 <style>
+   3.3)인라인스타일 : 요소의 style='' 속성
+
+  * 다중 스타일시트 적용시 - 3.1->3.2->3.3 차례로 우선순위가 적용되어 스타일링 됨. 그래서(Cascading)
+
+  * Day01에 만들었던 04_coffee.html에 04_coffee.css 파일 <link>시켜 스타일 적용해보기
+
+    
+  *부모에게 적용된 스타일을 후손에게도 영향을 미친다.(p.127)
+    - <ul>안에 <li>가 있을때 <li>의 글씨도 <ul>의 스타일에 영향을 받음.
+
+     <style type="text/css">
+	 ul{font-family: serif; color: red;}	
+     </style>
+
+
+     <ul>
+	<li>aaa</li>
+	<li>bbb</li>
+	<li>ccc</li>
+     </ul> 
+
+  
+  -- 실습 ------------------------------------------
+
+   * 1)~ 3)에 대해 Day03>>01_ex.html만들어서 하나씩 테스트 - 같이 작성해보기..(Day03>>01_ex.html)  
+   * Day01에 만들었던 04_coffee.html에 04_coffee.css 파일 <link>시켜 스타일 적용해보기
+  --------------------------------------------------
+
+  
+
+ 4) css 주요 속성들
+
+   4.1) color : 텍스트색상 ,  background-color : 배경색
+     (색상값 : 이름(16색), 16진수, rgb(255,0,0), rgb(100%,0%,0%); rgba()는 잘쓰지 않음. opacity(0.0~1.0)사용
+   
+   4.2)  폰트 (Day03>>font.html)
+
+      4.2.1) font-family 
+ 
+           * c://windows/fonts/ 폰트파일들의 속성중 자세히에 있는 제목 사용, 한글은 잘 안되므로 웹폰트사용
+         
+        	p{font-family: "Blippo Blk BT", serif;}
+		p{font-family: "BrushScript BT", sans-serif;}
+		p{font-family: fantasy;}
+		p{font-family: cursive;}
+		p{font-family: monospace;}
+
+
+		p{font-family: "YWDA05","휴먼매직체", sans-serif;}
+		
+		/*한글은 못알아듣는 겨우가 많으니 웹폰트가 좋을듯*/
+			css의 다른 파일 경로는 url로.
+
+		@font-face{
+			font-family: "My Font";
+			src:url("YSOS07.TTF");
+			/*src:url("YWDA05.TTF");*/
+		}
+
+		p{font-family: "MY Font"}
+   
+  
+    
+       4.2.2) font-size : pt(포인트), px, %, em(W3C 권장하는 단위), 키워드 - large, medium, small등
+       4.2.3) font-weight : bold, normal
+       4.2.4) font-style : normal, italic(필기체느낌 기울기), oblique(그냥 기울기)
+
+       4.2.5) 축약형 속성 {font : italic bold 40px Georgia, serif} 
+              *순서중요 : style - weight - size - family
+
+
+      *font-variant로 소문자를 작은 대문자, 즉 소문자 크기의 대문자로 변경(따라서 한글에서는 의미 없는 속성)
+
+      *로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기 텍스트
+
+
+   
+
+   4.3) 텍스트 스타일 (p.143표)
+    - direction(가로쓰기,세로쓰기),
+    - letter-spacing(글자간 간격)
+    - line-height(텍스트의 줄 높이)
+
+    - *** text-aling(텍스트의 수평정렬- 블럭요소)
+   
+    - text-decoration( 텍스트에 라인그리기 : overline, line-through, underline, none)
+    - text-transform: uppercase, lowercase, capitalize(단어의 첫글자 대문자)
+
+    - text-shadow;
+    - word-wrap : 영어만 적용됨. 
+
+    - 다중컴룸
+      		p.lorem{
+			column-count: 2;
+			column-gap: 80px;
+			column-rule: 4px solid green;
+		}
+
+
+  -- 실습 ------------------------------------------
+  
+   * 4) 주요속성 Day03>>font.html만들어서 하나씩 테스트 - 같이 작성해보기 (Day03>>font.html)
+   * p.149연습문제 풀기    
+
+  --------------------------------------------------
+
+
+
+5. Box모델 이해하기
+
+   * 요소(element)가 차지하는 사이즈와 위치에 대한 개념수업(ppt)
+
+  * 마진-경계선-패팅-콘텐츠의 관계이해. 요소의 사이즈는 이들모두의 합, width속성은 콘텐츠만의 너비
+
+
+  1)경계선 : border
+
+    1.1) border-style : solid, dotted, dashed, outset...  p.157  (스타일주면 width없어서 자동 3px)
+        * border-top-style, borde-left-style등으로 나누어 줄수 있음.
+
+    1.2) border-width : px, thick(두꺼운), medium, thin(얇은) p.158
+    1.3) border-color : 색상
+    1.4) border-radius : 모서리 둥굴게 
+        * border-bottom-left-radius: 0px; (각각의 모서리 따로 설정가능)
+
+    1.5) border-image : 경계선이미지  (p.162 : 9개의 영역중, 2,4,5,6,8은 늘어남 : strech, round)
+
+      	   /*경계선 이미지*/
+			/*css의 다른 파일 경로는 url로. */
+			border: 30px solid transparent;
+            width: 200px;
+            height: 500px;
+            /*-webkit-border-image: url(border.png) 30 30 round; /* Safari 5+ */
+            /*-o-border-image: url(border.png) 30 30 round; /* Opera */
+            /*border-image: url(border.png) 30 30 round; /* Chrome */
+            border-image-source: url(border.png);
+            border-image-slice: 30 30; /*높이,너비*/
+            /*border-image-repeat: round;*/
+            /*round가 동일하게 반복해 주는 것*/
+            /*stretch는 쭉늘려준다는 의미  이미지경로, image-slice: 높이:30픽셀, 너비:30픽셀 */
+
+   
+   2)width, height : px, %(너비만 가능)
+
+       /*인라인 요소들중 일부는 width, height이 안됨.*/
+
+        <!-- 인라인 요소 너비조정 가능-->
+	<img src="back.jpg">
+	<input type="text" name="">
+
+	<!-- 인라인 요소 너비조정 불가능-->
+	<a href="">asdfasdf</a>	
+	<em>asdfasdfasdf</em>
+
+       * 나중에 display:block으로 조정할 수 있음. display:inline-block
+
+   
+   3)margin : auto, px,pt,cm, %, inherit(부모요소마진 상속)
+     - 두 요소의 마진은 겹처짐.
+        #p1{background-color: red; height: 50px; margin: 0px; margin-bottom: 10px;}
+        #p2{background-color: green; height: 50px; margin: 0px; margin-top: 10px;}
+
+     - 마진의 값을 음수로 주면 두 요소가 겹쳐질 수 있음.
+        #p1{background-color: red; height: 50px; margin: 0px;}
+        #p2{background-color: green; width:50%; height: 50px; margin: 0px; margin-top: -20px;}
+
+
+   4) 수평정렬
+    4.1) 인라인요소 : 부모요소에 'text-align:center' (* 나중에 display:block으로 조정할 수 있음. display:inline-block)
+    4.2) 블럭요소(화면보다작은-width가 있는) : 해당 요소에 margin-left, margin-right: auto.
+
+    
+
+   5) 배경설정  background-
+    -color, image, size(가로 세로),
+    -repeat(no-repeat, repeat-x, repeat-y, repeat),
+    -attachment(scroll, fixed: 브라우저 스크롤기준, local:요소의 콘텐츠와 같이 스크롤.)
+
+  
+  -- 실습 ------------------------------------------
+  
+   * 1)-4) 주요속성 Day03>>02_boxmodel.html만들어서 하나씩 테스트 - 같이 작성해보기 (Day03>>02_boxmodel.html)
+
+  --------------------------------------------------
+
+
+   6)링크 스타일
+    6.1) * a:link   :visied   :hover   :active ->로 글씨색과 사이즈 변경
+         * a#anchor:hover   :active ->아이디가 부여된 a의 글씨색과 사이즈 변경
+    6.2) 다른 요소에 hover적용해보기
+        
+	/*문서에 마우스를 올려놓으면 적용.*/
+	 :hover{background-color: red;};
+
+          p:hover{background-color: green;}
+
+          img{background-color: yellow; border: 2px solid red;}
+	  img:hover{background-color: gray; width: 100%}
+
+
+
+    7)리스트 스타일 (p.178)
+      * list-style-position: inside(들여쓰기)
+      /*리스트 이미지는 사이즈 조절이 번거로워 잘 사용하지 않음.*/
+        ul.d { list-style-image: url('coffee.gif'); }
+
+     * 홈페이지에서 가장 많이 보이는 모습인 수평 네비게이션 메뉴.(p.179)
+      
+       Day03>>liststyle2.html 실습시간에 해볼것!
+
+
+    8) 테이블 스타일 (예제는 강의자료chap5)
+     8.1)경계선 : border
+     8.2)경계선통합 : border-collapse: collapse, separator
+     8.3)배경,글씨색
+     8.4)테이블의 사이즈와 텍스트 정렬 p.184
+     8.5)테이블 캡션위치:caption-side: top,bottom
+
+   
+
+   **DOM구조를 이용한 선택자!
+     p:nth-of-type(2) { color: red; }
+     p:nth-child(2) { color: blue; }
+     p:nth-child(4) { color: green; }
+     span:nth-child(1) { color: orange; }
+     span:nth-of-type(1) { color: yellow; }
+     
+
+
+   -- 실습 ------------------------------------------
+  
+   * 6)-8) 주요속성 Day03>>03_ex.html만들어서 하나씩 테스트 - 같이 작성해보기 (Day03>>03_ex.html)
+   * p.178 네비케이션 메뉴모양제작 :  Day03>>liststyle2.html 실습시간에 해볼것!
+   * p.189 연습문제
+  --------------------------------------------------
+
+
+
+===================Day04=====================================
+
+
+
+
+6. 레이아웃과 CSS 애니메이션
+
+  1) 블럭요소와 인라인요소에 대한 소개(ppt)
+
+    *블럭요소 : 한줄차지
+    *인라인요소 : 콘텐츠의 너비만큼 차지(width가 안됨)
+
+  2) display: 속성으로 블럭<->인라인 변환가능
+     block, inline, none, hidden, inline-block(인라인의 배치구조는 유지되데 너비값을 줄수 있음)
+
+
+  3) 위치지정 : top, right, left, bottom <- positioin속성이 없으면 적용되지 않음.
+   
+   
+    3.1) static   : 기본값으로서 정상적인 요소배치의 흐름대로 배치. ( top, left 등이 적용되지 않음)      
+    3.2) relative : 요소가 원래배치될 위치를 기준으로 상대적 배치 ( top, left로 위치적용) - 겹쳐질 수 있음.
+    3.3) absolute : 전체페이즈의 좌상단지점을 기준으로 배치 - 별도의 width가 없으면 너비가 wrap이 됨.
+       *부모요소가 있을 경우 부모요소의 좌상단을 기준으로 배치(단, 부모가 static이면 안됨: 통상 relative)
+    3.4) fixed : 브라우저의 좌상단을 기준으로 배치.
+       *화면을 스크롤해도 뷰는 계속보임.(광고처럼)
+
+  4) float - 요소들을 물흐름처럼 배치 시키기 위한 기법 ( 이미지 갤러리 같은- 화면사이즈에 따라 한줄에 표기되는 개수변경)
+             * left와 right만 가능( right를 주면 오른쪽 align같은 느낌)
+
+     * Day04>>float.html과 gallery.html을 실행시켜보면서 느낌 알아보기
+
+    - 웹페이지 레이아웃에서 float사용
+
+  5) clear : float다음에 오는 요소들은 무조건 float의 영향을 받기에 블럭요소의 특징과 상관없이 무조건 옆으로 붙어버림.
+             float의 영향을 깰때 사용하는 것이 clear
+
+
+  6) z-index : 요소의 z축 조절로 곂쳐보이는 순서 변경( 기본 0 , 음수도 가능, 숫자크게 앞으로..) 
+
+     * postion속성이 static이면 z-index가 먹지 않음. (억지로 margin을 음수로 주어 겹치게 하더라도)
+
+
+  7) min-width,height , max-width,heigh : 요소가 더이상 작아지지 않음.(브라우저가 더 작아질 수 있음)
+
+  8) overflow속성 : 자식요소가 부모의 범위를 벋어날때 처리결정
+     : hidden,  scroll,  auto 
+
+
+    *학습내용 정리 : p.212 표참고.
+
+  -- 실습 ------------------------------------------
+  
+   * 1)-8) 주요속성 Day04>>01_ex.html만들어서 하나씩 테스트 - 같이 작성해보기 (Day04>>01_ex.html)
+            - 각 요소마다 다른 html문서 참고.
+  --------------------------------------------------
+
+
+  9)<div>를 이용한 홈페이지 문서 레이아웃
+     - HTML에 <div>4개 배치(id부여) 후  css style로 하나씩 배치(layout)
+
+  10)시맨틱 요소(Semantic elements) : HTML5 웹 표준에서 권장!
+     - <div>라는 똑같은 4개의 요소를 쓰면 의미를 명확히 알기 어렵고, 검색엔진에서 파악하기 어려워 등장한 태그들
+
+     - 가장 기본적인 6개의 요소 : <header><nav><aside><section><article><footer>
+     - 기타 : <figure>, <time>, <hgroup>
+
+
+  11) display:table-cell   <- 요소를 테이블의 셀처럼 만들어 버림.
+ 
+        - display의 속성값으로 사용(float보다  수 있음)
+
+
+   -- 실습 ------------------------------------------
+  
+   * 9)-11) 주요내용 하나씩 테스트 - 같이 작성해보기 (Day04>>0ex.html)
+            
+  --------------------------------------------------
+
+
+
+  12) CSS를 이용한 효과
+
+   12.1) 투명도 : <a>의 :hover 시에 opactity 적용
+   12.2) 가시성 : <a>의 :hover 시에 visiblity:hidden 적용 
+
+   12.3) 전환효과 애니메이션 : transition:속성 시간s (Day04>>transition.html)
+
+		transition: width 3s, height 3s, transform 3s, background-color 3s;
+		
+		/*크롬 사파리*/
+		-webkit-transition: width 3s, height 3s, transform 3s, background-color 3s;
+		
+	 	/*모질라 파이어폭스*/
+	 	-moz-transition: width 3s, height 3s, transform 3s, background-color 3s;
+	
+	 	/*오페라*/
+	 	-o-transition: width 3s, height 3s, transform 3s, background-color 3s;           
+
+   12.4) transform: 변환
+      12.4.1) 이동 - transform: translate(100px, 0px);   
+      12.4.2) 크기 - transform: scale(1.2, 1.2);
+      12.4.3) 회전 - transform: rotate(30deg);  //각도는 deg, rad
+      12.4.4) 비틀기 - transform: skew(100px, 0px);    
+
+
+     * /*다중 transtorm*/
+	transform: rotate(30deg) scale(1.2, 1.2) translate(80px, 0px);
+
+
+   12.5) 3차원 전환 : p.230 각자 연습
+
+
+   12.6) 프레임 애니메이션(Day04>>animation.html)
+
+      @keyframes myanim
+        {
+            0%   {left:0px; top:0px;}  (from)
+            25%  {left:100px; top:0px;}
+            50%  {left:200px; top:0px;}
+            75%  {left:100px; top:0px;}
+            100% {left:0px; top:0px;}  (to)
+        } 
+
+      div{
+
+	 animation-name:myanim; 
+         animation-duration: 5s;
+         animation-iteration-count: 2(infinite);
+         animation-timing-funtion: ease-out(멈출때 천처히), ease-in(천천히 시작), ease-in-out         
+         			
+      }
+
+      *바운스볼...
+
+
+      *@-webkit-keyframes
+
+
+   -- 실습 ------------------------------------------
+  
+   * 12) 주요내용 하나씩 테스트 - 같이 작성해보기 (Day04>>transition.html, Day04>>animation.html)
+
+   * p.237연습문제 풀기
+            
+  --------------------------------------------------
+
+
+
+=====Day05=============
+
+7. HTML과 CSS로 웹사이트 만들기
+
+  1) 전체 환면 계획 및 네비게이션 구조도, 웹문서구분, 화면구조설계
+
+  2) HTML 요소작성 (스타일은 나중에)
+
+  3) CSS로 웹문서 디자인.
+
+
+  -- 실습 ------------------------------------------
+  
+   * chapter7장 따라 만들기
+
+   * p.265 추가 웹문서 만들어보기.
+            
+  -------------------------------------------------
+
+
+========================================================================================================
+===================== CSS 기초 수업 종료 ==============================================================
+========================================================================================================
+
+
+1. JavaScript 개요 소개
+
+
+
+        
+
+    
+ 
+
+     
+
+
+
+    
+
+       
+
+
+
+ 
+     
+ 
+
+   
+
+
+      
+
+
+
+
+      
+     
+
+
+    
+
+
+
+     
+
+
+
+
+   
+
+
+      
+
+
+
+  
+
+
+
+    
+
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
