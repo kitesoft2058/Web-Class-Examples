@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<script type="text/javascript" src="test.json"></script>
+</head>
+<body>
+
+	<h3 id="target"></h3>
+	<button onclick="aaa()">button</button>
+	<button onclick="bbb()">button</button>
+	<script type="text/javascript">
+		var s= '{"name":"kim", "age":20}';
+
+		function aaa(){
+
+			var student = JSON.parse(s);
+			// var student = eval( "("+s+")" );
+
+			str= student.name+" , ";
+			str+= student.age;
+
+			document.getElementById('target').innerHTML=str;
+		};
+
+		//var strs='[ {"name":"sam", "age":20}, {"name":"robin", "age":25} ]';
+
+		strs='['+
+		'{"name":"sam", "age":20},'+
+		'{"name":"robin", "age":25},'+
+		'{"name":"lee", "age":30}'+
+		']';
+
+		function bbb(){
+			var students= JSON.parse(strs);
+
+			str="";
+			for(var i=0; i<students.length; i++){
+				str += students[i].name+" , ";
+				str += students[i].age+"<br/>";
+			}
+
+			document.getElementById('target').innerHTML=str;
+		}
+	</script>
+
+	<hr/>
+
+	<!-- AJAX를 이용한 json파싱 -->
+
+</body>
+</html>

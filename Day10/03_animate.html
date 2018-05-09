@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+
+	<script type="text/javascript">
+		// 목표로 하는 css의 속성(property)를 지정(JS객체표기법)하여 애니메이션..
+		$(document).ready(function(){
+
+			$('#btnMove').on('click', function(){
+				//***css의 속성값을 넣을 때  '', "" 문자형 표기없으면 안됨.***
+				$('img').animate( {left:'200px'} ); //위치변경 animate는 반드시 요소의 position 스타일이 static이면 X
+			});
+
+			//애니메이션 duration
+			$('#btnBack').on('click', function(){
+				$('img').animate( {left:''}, 3000 ); 
+			});
+
+			//애니메이션 메소드 체이닝..
+			$('#btnMulti').on('click', function(){
+				$('img').animate( {left:'+=50px', opacity: '0.4', width:'+=50px', height: '-=50px'}, 3000 );
+			});
+
+			//순차적인(Sequential) 애니메이션.
+			$('#btnSeq').on('click', function(){
+				$('img').animate( {left:'+=30px'}, 1000 ); 
+				$('img').animate( {opacity: '0.4'}, 1000 ); 
+				$('img').animate( {width:'+=50px'}, 1000 ); 
+				$('img').animate( {height: '-=50px'}, 1000 ); 
+			});
+
+			//애니메이션 리셋.
+			$('#btnReset').on('click', function(){
+				$('img').animate( {left:'', opacity: '1.0', width:'200px', height: '200px'} );
+			});
+
+
+			//애니메이션 종료
+			$('#btnStop').on('click', function(){
+				$('img').stop();
+			});
+
+
+
+		});
+	</script>
+
+</head>
+<body>
+
+	<p>
+		<button id="btnMove">move</button>
+		<button id="btnBack">moveBack</button>
+		<button id="btnMulti">multiAni</button>
+		<button id="btnSeq">Sequential</button>
+		<button id="btnReset">reset</button>
+
+		<button id="btnStop">stop</button>
+	</p>	
+
+	<img id="a" src="computer.png" width="200" height="200" style="position: relative;">
+
+
+</body>
+</html>

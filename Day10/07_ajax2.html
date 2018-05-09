@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#b1').on('click', function(){
+
+				$.get('test.txt', function(data, status){
+					$('#ta').val(data + "\n\nSTATUS : " + status);
+				});
+
+				$.get('getTest.php?name=Robin&pw=1234', function(data, status){
+					$('#target').html(data);
+				});
+			});
+
+			$('#b2').on('click', function(){
+
+				$.post('test.txt', function(data, status){
+					$('#ta').val(data + "\n\nSTATUS : " + status);
+				});
+
+				$.post('postTest2.php', {name:"SAM", pw:"5678"}, function(data, status){
+					$('#target').html(data);
+				});
+
+				// 또다른 post의 사용법
+				$.post('postTest2.php', {name:"SAM", pw:"5678"}).done(function(data){					
+					$('#pp').html(data);
+				});
+				
+			});
+
+			$('#b3').on('click', function(){
+				
+				// ajax()의 파라미터로 javascript 리터럴 객체 전달.
+				$.ajax({
+					type:"GET",
+					url: "test.txt",
+					success: function(data){
+						$('#ta').val(data);
+					},
+					error: function(error){
+						$('#ta').val(error.responseText);
+					}
+				});
+
+				// ajax()를 이용해서 POST로 데이터 전달
+				$.ajax({
+					type:"POST",
+					url: "postTest2.php",
+					data: "name=Hong&pw=4321",
+					success: function(data){
+						$('#target').html(data);
+					},
+					error: function(error){
+						$('#target').html(error.responseTest);
+					}
+				});
+
+			});
+
+			$('#b4').click(function(){
+				//load()메소드로 좀더 수월하게 통신
+				$('#ta').load('test.txt');
+
+				//HTML을 그대로 읽어올 수 있음.
+				$('#target').load('test.html');
+
+				//문서 안에서 특정 선택요소만 불러올 수도 있음.
+				$('#pp').load('test.html #p1');	
+			});
+
+		});
+	</script>
+</head>
+<body>
+
+	<p>
+		<button id="b1">get Method</button>
+		<button id="b2">post Method</button>
+		<button id="b3">ajax Method</button>
+		<button id="b4">load Method</button>		
+	</p>	
+
+	<textarea id="ta" rows="5" cols="50"></textarea>
+	<div id="target"></div>
+	<hr/>
+	<p id="pp"></p>
+
+
+</body>
+</html>

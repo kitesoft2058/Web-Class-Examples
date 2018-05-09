@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+
+	<script type="text/javascript">
+
+		function getTest(){
+			var req = new XMLHttpRequest();
+			req.onreadystatechange= function(){
+				$('#ta').append(req.readyState+" , "+req.status+"\n");
+				if(req.readyState==4 && req.status==200){
+					$('#ta').text( req.responseText );
+				}
+			}
+			//req.open('GET', 'test.txt', true);		
+			//req.open('GET', '03_form.html', true);
+			//req.open('GET', 'http://www.w3schools.com/XML/cd_catalog.xml', true);//cross origin
+			req.open('GET', 'getTest.php?name=SAM&pw=1234', true);
+			req.send();
+		}
+
+		function postTest(){
+			var req = new XMLHttpRequest();
+			req.onreadystatechange= function(){
+				if(req.readyState==4 && req.status==200){
+					$('#ta').text( req.responseText );
+				}
+			}	
+				
+			req.open('POST', 'postTest.php', true);
+
+			// Data를 보내기 위해 반드시 헤더 작업 필요!
+			req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			req.send('sel=KKKKKK');	
+
+		}
+
+		// jQuery를 통해 ajax작업을 하면 좀더 수월.
+	</script>
+</head>
+<body>
+	<p>
+		<button onclick="getTest()">GET</button>
+		<button onclick="postTest()">POST</button>
+	</p>
+	
+	<textarea id="ta" rows="5" cols="50"></textarea>
+
+</body>
+</html>

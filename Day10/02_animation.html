@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<!-- jQuery 추가 - CDN방식 -->
+	<!-- <script type="text/javascript" src="jquery-3.2.1.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>	
+
+	<script type="text/javascript">
+		$(document).ready( function(){
+			// $('#show').on('click', function(){
+			// 	$('img').show();
+			// });
+
+			//slow: 600ms, 기본: 400ms, fast: 200ms 
+
+			$('#show').click(function(){
+				$('img').show("slow");
+			});
+
+			$('#hide').on('click', function(){
+				$('img').hide(3000);
+			});
+
+			$('#toggle').on('click', function(){
+				$('img').toggle("fast");
+			});
+
+			$('#fadein').on('click', function(){
+				$('img').fadeIn(8000, function(){
+					alert('complete');
+				});
+			});
+
+			$('#fadeout').on('click', function(){
+				$('img').fadeOut(8000);
+			});
+
+			$('#fadeto').on('click', function(){
+				$('img').fadeTo(2000, 0.5);  //0.5까지만 투명해지도록..
+			});
+
+			$('#slideup').on('click', function(){
+				$('img').slideUp("slow", 'easein');
+			});
+
+			$('#slidedown').on('click', function(){
+				$('img').slideDown("slow");
+			});
+
+			$('#slidetoggle').on('click', function(){
+				$('img').slideToggle("slow");
+			});
+
+			$('#all').on('click', function(){
+				$('img').show().fadeOut('slow').slideDown('slow');
+			});
+		});
+	</script>
+</head>
+<body>
+
+	<p>
+		<button id="show">show</button>
+		<button id="hide">hide</button>
+		<button id="toggle">toggle</button>
+		<button id="fadein">fadein</button>
+		<button id="fadeout">fadeout</button>
+		<button id="fadeto">fadeto</button>
+		<button id="slideup">slideup</button>
+		<button id="slidedown">slidedown</button>
+		<button id="slidetoggle">slideToggle</button>
+		<button id="all">show+fade+slide</button>
+	</p>
+
+	<img src="computer.png" width="200">
+
+	<!-- 애니메이션 응용...1 -->
+	<hr/>
+	<h3>animantion 응용 1</h3>
+
+	<style> 
+		div.abc div{ 
+			background:#3d9a44;
+			margin:3px;
+			width:80px;
+			height:40px;
+			float:left;
+			text-align: center;
+		}
+	</style>
+
+	<div class="abc">
+		Menu
+		<div>aa</div>
+		<div>bb</div>
+		<div>cc</div>
+		<div>dd</div>
+		<div>ee</div>
+	</div>
+
+	<script> 
+	 	$('div.abc').click(function () {
+	 		if ($(".abc div:first").is(":hidden")) {
+	 			$(".abc div").show("slow"); 
+	 	  	} else {
+	 	  		$(".abc div").slideUp(); 
+	 	    }
+	 	});
+	</script>
+
+
+
+<!-- 애니메이션 참고...... 
+    
+	<button type="button" id="button1">BTN1</button>
+    <p id="p1">BTN1</p>
+    <button type="button" id="button2">BTN2</button>
+    <p id="p2">BTN2</p>
+    <button type="button" id="button3">BTN3</button>
+    <p id="p3">BTN3</p>
+    <button type="button" id="button4">BTN4</button>
+    <p id="p4">BTN4</p>
+    <button type="button" id="button5">BTN5</button>
+    <p id="p5">BTN5</p>
+    <button type="button" id="button6">BTN5</button>
+
+
+    <script type="text/javascript">
+      // 1. $(선택자).hide(ms) : ms 시간에 걸쳐 사라짐(효과는 없음)
+      $("#button1").on("click",function(event){
+        $("#p1").hide(200);
+      });
+      // 2. $(선택자).show(ms) : ms 시간에 걸쳐 나타나게 함(효과 X)
+      $("#button1").on("click",function(event){
+        $("#p1").show(200); // 0.2초에 걸쳐 나타남
+      })
+      // 3. $(선택자).toogle(ms) : ms초에 걸쳐 hide상태면 show하고 show상태면 hide상태로 바꿈
+      $("#button1").on("click",function(event){
+        $("#p1").toogle(200);
+      })
+      // 4. $(선택자).fadeIn(ms) : ms 초에 걸쳐 점차적으로 나타남(효과가 O)
+      $(document).on("click","#button2",function(event){
+        // 동적으로 태그를 생성시에는 이런식으로 이벤트를 줘야함(그냥 써밧음...)
+        $("#p2").fadeIn(2000); // 2초에 걸쳐 점차적으로 나타남
+      })
+      // 5. $(선택자).fadeOut(ms) : ms 초에 걸쳐 사라짐(효과O)
+      $("#button2").on("click",function(event){
+        $("#p2").fadeOut(2000);
+      });
+      // 6. $(선택자).fadeTo(ms,0~1) : ms동안 0~1 사이의 opacity(투명도) 상태가 됨 1은 완전히 보임 0은 아예 안보임
+      $("#button3").on("click",function(event){
+        $("#p3").fadeTo(2000,0.3);
+      })
+      // 7. $(선택자).slideDown(ms) : ms초에 걸쳐 펼쳐지듯이 나타남
+      $("#button4").on("click",function(event){
+        $("#p4").slideDown(2000);
+      })
+      // 8. $(선택자).slideUp(ms) : ms초에 걸쳐 접히는 효과로 사라짐
+      $("#button4").on("click",function(event){
+        $("#p4").slideUp(2000);
+      })
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+      // 9. $(선택자).animate({css속성},ms) : ms초에 걸쳐 css 속성을 지정된 걸 차츰 적용함(애니메이션 효과)
+      $("#button5").on("click",function(event){
+        $("#p5").animate({margin-left:250px,color:red},5000).animate({margin-left:0px},3000);
+      });
+
+      // 10. $(선택자).stop() : 수행중인 애니메이션 효과를 정지시킴
+      $("#button6").on("click",function(event){
+        $("#p5").stop();
+      });
+
+    </script>
+	 -->
+
+</body>
+</html>

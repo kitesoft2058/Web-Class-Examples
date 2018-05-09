@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<!-- JQuery Library 추가하기 : www.jquery.com -->
+	<!-- 1. 파일다운로드방식 -->
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+
+	<!-- 2. CDN( Contents Delivery Network) 방식 - slim안됨. 애니메이션에서 문제있음.-->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+
+	<script type="text/javascript">
+
+		//HTML의 요소를 찾을 때 CSS선택자를 이용해서 쉽게 선택할 수 있음.
+		$(document).ready( function(){
+			// alert('aa');
+			jQuery('#btn').click(function(){
+				alert('clicked');
+				$(this).hide();
+			});
+
+
+			//JS의 addEventListener()와 같은 역할.
+			//1. bind()방식 - 이제를 잘 안씀.
+			$('#btn1').bind('click', function(){
+				$('.p1').hide();
+			});
+
+			//2. 이벤트명으로 되어 있는 메소드.이용. 많이 사용함.
+			$('#btn2').click(function(){
+				$('p.p1').show();
+			});
+
+			//3. 요즘 가장 권장되고 있는 방식..이벤트를 여러개 추가할 수 있음. 다음 마우스 예제에서..
+			$('#btn3').on('click', function(){
+
+				$('p').toggle(); //여러개라도 동시에 처리함.
+				// $('p')[0].toggle(); //error ; jquery가 아니므로..
+
+				// $($('p')[0]).toggle(); //이렇게 하면 가능함.
+
+				//추가설명..
+				
+				//변수를 일반 JS의 변수로 만들면 jQuery의 메소드를 사용할 수 없음.
+				var a= $('p');
+				//e.toggle(); //error
+
+				// //변수 이름에 $가 있으면 jQuery 변수(객체)여서 jQuery의 메소드들을 사용할 수 있음.
+				var $e=$('p');
+				$e.toggle();
+
+				//실제 객체의 타입은 아무 차이가 없음. 앞에 $를 붙임으로서 능력차이가 생김.
+				var k=$('p');
+				var $k= $('p');
+				alert(k +" , "+ $k);
+				alert(typeof(k) +" , "+ typeof($k));
+
+			});
+
+		});	
+	</script>
+
+
+	<!-- 마우스 이벤트 : 아래 body에 div요소 만들고.. -->
+	<style type="text/css">
+		div.m{
+			width: 200px;
+			height: 50px;
+			background-color: yellow;			
+		}
+
+		div.m2{
+			width: 300px;
+			height: 100px;
+			background-color: lightgreen;
+		}
+	</style>
+
+	<script type="text/javascript">
+		$(document).ready( function(){
+
+			var cnt=0;
+			
+			//이벤트 메소드 명으로
+			$('.m').mouseover( function(){
+				$('div.m p:first').text('mouse over'); //dom제어 때 text, html소개...
+			});
+
+			//on메소드에 이벤트명 등록.
+			$('.m').on('mouseleave', function(){
+				cnt++;
+				$('div p:last').text(cnt);
+			});
+
+
+
+
+			// 여러개의 이벤트 한번에 처리하기.(객체로 만들어서 처리).
+			// event.buttons :  0-no , 1-left,  2-right,  4-wheel
+			var callbacks= {
+				mousedown: function(e){
+					$(this).html('down : '+event.buttons+'<br/>');
+					$(this).append('client or page : '+event.clientX+","+event.pageY+"<br/>");
+					$(this).append('screen : '+event.screenX+","+event.screenY+"<br/>");
+					$(this).append('offset : '+event.offsetX+","+event.offsetY+"<br/>");
+				},
+
+				mousemove: function(e){
+					$(this).html('move : '+event.buttons+'<br/>');
+					$(this).append('client or page : '+event.clientX+","+event.pageY+"<br/>");
+					$(this).append('screen : '+event.screenX+","+event.screenY+"<br/>");
+					$(this).append('offset : '+event.offsetX+","+event.offsetY+"<br/>");
+
+				},
+
+				mouseup: function(){
+					$(this).html('up : '+event.buttons+'<br/>');
+					$(this).append('client or page : '+event.clientX+","+event.pageY+"<br/>");
+					$(this).append('screen : '+event.screenX+","+event.screenY+"<br/>");
+					$(this).append('offset : '+event.offsetX+","+event.offsetY+"<br/>");
+				},
+
+				mousewheel: function(){
+					$(this).append( event.wheelDelta ); //올리면 120, 내리면 -120
+				}
+
+			};
+
+			$('div.m2').on( callbacks );
+
+
+
+
+			//한번에....이방식이 더 많이 사용됨.
+			$('div.m2').on( "mousedown mouseup mousemove", function(){
+				//alert(event.type);
+				$(this).append(event.type+"<br/>");
+				$(this).css('overflow','scroll');
+
+			} );
+
+
+			//on메소드는 코드의 간소화만을 목적으로 하는 것이 아니라. 브라우저의 호환성과도 연관이 있음.
+			//mousewheel은 firefox에서 못 알아듣는 이벤트 임.(firefox : DOMMouseScroll)
+			$('div.m2').on( "mousewheel DOMMouseScroll", function(){
+				//둘중 하나의 이벤트가 발생하면...처리..
+
+				if(event.detail) $(this).append("변화 : "+ event.detail+"<br/>");
+				else $(this).append("변화 : "+ event.wheelDelta+"<br/>");
+
+			});
+
+
+
+
+			
+		} );
+		
+	</script>
+
+	<!-- 포커스 이벤트 처리 -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//input요소 포커스 이벤트
+			$('input').focus(function(){
+				$(this).css('background-color', 'yellow'); //css 스타일적용 함수. 
+			});
+
+			$('input').on('blur', function(){
+				$(this).css('background-color', '');
+			});
+
+		});
+	</script>
+</head>
+<body>
+
+	<button id="btn">button</button>
+
+	<hr/>
+	<h3>클릭 이벤트 처리.</h3>
+	<button id="btn1">hide</button>
+	<button id="btn2">show</button>
+	<button id="btn3">toggle</button>
+	<p class="p1">이 요소를 제어합니다.</p>
+
+	<hr/>
+	<h3>마우스 이벤트 처리.</h3>
+	<div class="m">
+		<p></p> <!--마우스 over 정보-->
+		<p></p> <!--마우스 leave 정보-->
+	</div>
+
+	<!-- 멀티 이벤트 처리. -->
+	<div class="m2"></div>
+
+
+	<hr/>
+	<h3>포커스 이벤트 처리.</h3>
+	<label>name : <input type="text" name=""></label>
+
+
+
+
+
+
+</body>
+</html>
