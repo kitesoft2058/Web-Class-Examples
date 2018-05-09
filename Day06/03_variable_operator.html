@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script type="text/javascript">
+
+	
+		// 같은 변수의 선언 가능. 심지어 새로 선언해서 값을 넣지 않아도 기존 값 유지		
+		var a=10;
+		var a;
+
+		document.write(a);
+		document.write("<br/>");
+
+		// 수치형 변수값.
+		var b= 3.14;
+		document.write(b);
+		document.write("<br/>");
+
+		b= 123.5e3;
+		document.write(b);
+		document.write("<br/>");
+
+		b= 123.5e-3;
+		document.write(b);
+		document.write("<br/>");
+
+
+		// 연산자 중 특이점.
+		var c= 1;
+		var d= "1";
+		var e= 1.0;
+
+		// 수치형과 문자형은 자료형이 다르더라도 값이 같으면 true;
+		document.write(c==d);
+		document.write("<br/>");
+		document.write(c==e);
+		document.write("<br/>");
+
+		// 값과 자료형이 모두 같은지 비교하는 연산자
+		document.write(c===d);
+		document.write("<br/>");
+		document.write(c===e); //실수와 정수는 같은 자료형으로 봄(number)
+		document.write("<br/>");
+
+		document.write("<hr/>");
+
+		// 0으로 나눗셈 - Infinity 키워드
+		document.write(10/0);
+		document.write("<br/>");
+
+
+		// 비트연산자 중 >>>
+		// 부호가 양수일때는 차이 없음.
+		var f=10;
+		document.write(f>>2);
+		document.write("<br/>");
+
+		document.write(f>>>2);
+		document.write("<br/>");
+
+		// 부호가 있을때 차이가 생김
+		// number자료형은 무조건 64bit 부동소수점방식임.
+		// 부호(1bit), 지수(11bit), 가수부(52bit) - floating point표기법 학습필요.
+		var g= -10;
+		document.write(g>>2);//부호비트를 빼고 시프트하기에 부호가 바뀌지 않음
+		document.write("<br/>");
+
+ 		//부호bit까지 시프트 시킴으로 인해 부호가 변경됨. 
+		document.write(g>>>2);
+		document.write("<br/>");		
+
+		// 표현가능한 최대값 : 2^1024-1  ~~ 1.7*10^308
+		document.write(Number.MAX_VALUE); 
+		document.write("<br/>");
+
+		document.write(12345678912345678123456789123456789);
+		document.write("<br/>");
+
+
+		//심지어 변수선언 없이 사용도 가능.(전역변수 - 함수수업때 소개.)
+		k=5;
+		document.write(k);
+		document.write("<br/>");
+
+
+		// in과 delete, instanceof는 배열과 객체를 배워야 소개 가능, yield역시..
+
+		document.write("<hr/>");
+
+		// 수치형과 문자열의 변환 
+		var h= 1;
+		document.write( typeof(h) );
+		document.write("<br/>");
+
+		//h= String(h);
+		h= h+"";
+		document.write( typeof(h) );
+		document.write("<br/>");
+
+		h= parseInt("4");
+		document.write( typeof(h) );
+		document.write("<br/>");
+
+		// 숫자가 아닌것을 숫자형으로 파싱하려고 하면. NaN(Not a Number)
+		document.write( parseInt("aa") );
+		document.write("<br/>");
+
+		// 실수형 타입은?
+		document.write( parseInt("3.14") );
+		document.write("<br/>");
+
+		document.write( parseFloat("3.14") );  //parseDouble()은 없음. error
+		document.write("<br/>");
+
+		document.write("<hr/>");
+
+		// (수치형 <-> 문자형 why?)
+		// 사용자 입력은 무조건 string형으로 읽어짐.
+		var age= prompt("input your age", "input number");
+		document.write( age + 3 );
+		document.write("<br/>");
+
+		age= parseInt(age);
+		document.write( age + 3 );
+		document.write("<br/>");
+
+		// 입력을 prompt를 이용하는 것은 불편함.
+		// input 요소로 입력 처리..는 새로 html작성.
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

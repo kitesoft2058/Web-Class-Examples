@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Dialog Test</title>
+
+	<script type="text/javascript">
+		/*일반적인 알림 경고창. 알림이 여러개면 순차적으로....*/
+		alert();
+		alert('알림.');
+
+		// 사용자에게 확인취소를 선택하게 하는 다이얼로그..
+		// 리턴값은 true, false.
+		var answer= confirm("종료하시겠습니까??");		
+		document.write(answer+"<br/>");
+
+		// 사용자 입력! - 리턴값은 언제나 string //값을 입력하지 않고 확인하면 두번째 기본값, 취소는 null);
+		var age= prompt("당신의 나이를 입력하세요.", "0");
+		document.write(age+"<br/>");
+		document.write(typeof(age)+"<br/>");
+
+
+		// document.write()는 언제나 주의할 것!!!
+		// body요소 생성 후 호출하면 body의 모든 요소들 삭제됨.!!
+		// 아래 body작업
+
+		function aaa(){
+			document.write('화면 전체 다시 작성!!!');
+		}
+
+		/////////////////////////////////////////////////////
+		/// p.325 연습문제 풀기!!! ///////////////////////////
+		/////////////////////////////////////////////////////
+
+	</script>
+
+
+
+</head>
+<body>
+
+	<h2>body heading</h2>
+	<button onclick="aaa()">click</button>
+
+
+</body>
+</html>
