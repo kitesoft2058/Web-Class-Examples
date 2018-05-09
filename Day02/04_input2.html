@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>input2</title>
+</head>
+<body>
+
+	<!-- File 선택 -->
+	<input type="file" name="file" accept="image/png"> <br/>
+
+	<!-- 추가된 type들 -->
+	<!-- p.93의 html5form.html따라 써보기 -->
+	<!-- 아래 타입들은 브라우저마다 다르게 보임 -->
+	<!-- form태그 안에서 검증이 되는 타입 required속성 적용 : email, url -->
+	<form>
+
+		<!-- 날짜 선택 관련 -->
+		date: <input type="date" />  <br />
+	    datetime: <input type="datetime" />  <br />
+	    datetime-local: <input type="datetime-local" />  <br />
+	    month: <input type="month" />  <br />
+	    time: <input type="time" />  <br />
+	    week: <input type="week" />  <br />
+
+	    <!-- 색상선택 윈도우 보여짐 -->
+	    color: <input type="color" />  <br />
+
+	    <!-- required속성 적용시 약간의 검증(@입력 형식검증) -->
+	    email: <input type="email" required />  <br />
+
+		<!-- 생김세는 text타입과 같되 mobile에서는 번호키패드로 표시 -->
+	    tel: <input type="tel" />  <br />
+
+	    <!-- 텍스트 입력시 X 버튼이 오른쪽끝에 생겨서 쉽제 reset가능. -->
+	    search: <input type="search"/>  <br />
+
+	    <!-- 주요속성: min, max, step, value -->
+	    range: <input type="range" min="1" max="10" value="2" step="2" />  <br />
+
+	    <!-- 주요속성: min, max, step, value (모바일에서 숫자키패드)-->
+	    number: <input type="number" min="-2" max="10" step="3" value="-2" />  <br />
+
+	    <!-- required속성 적용시 약간의 검증(http://입력 형식검증) -->
+	    url: <input type="url" required/>  <br />
+	    
+	    <!-- submit -->
+	    <input type="submit" />
+    </form>
+
+    <hr>
+
+    <!-- 추가된 input의 속성들 -->
+    <!-- 더많은 내용은 w3schoole의 HTML Input Attributes 참고.-->
+    <form>
+    	<!-- 힌트 : placehoder -->
+    	<input type="text" name="aa" placeholder="input name"><br/>
+
+    	<!-- 반드시 입력해야하는 input요소 (form태그안에서만 작동)-->    	
+    	<input type="text" name="" required><br/>
+
+    	<!-- 글씨는 보이지만 수정은 불가! -->
+    	<input type="text" name="" readonly value="SAM"><br/>
+
+    	<!-- 페이지 로딩이 완료되면 자동 포커스 -->
+    	<!-- 다른곳에도 있다면 먼저있는 것이 적용. -->
+    	<input type="text" name="" autofocus><br/>
+
+    	<!-- 최대글자수 제한 -->
+    	<input type="text" name="" maxlength="5"><br/>
+
+
+    	<!-- 자동완성기능 : <datalist>와 함께해야만 함.-->
+    	<input type="text" name="" autocomplete list="datas"><br/>
+
+    	<datalist id="datas">
+    		<option value="canada" label="캐나다"></option>
+    		<option value="china" label="중국"></option>
+    		<option value="korea" label="한국"></option>    		
+    	</datalist>
+    	<!-- ///////////////////////////////    -->
+    
+    	<input type="submit" name="">
+    </form>
+
+    <!-- 정규표현식 : pattern - required속성과 함께 사용. -->
+    <form>    	
+
+    	<!-- [영어소문자,대문자, 특수문자]는 1개이상으로 시작하며 [숫자]는0개 이상, @표시 있고
+         	 [영문, 숫자]한개 이상인 정규표현식.  -->
+         이메일:
+    	<input type="text" name="" pattern="[a-zA-Z!#$~%]+[0-9]*@[a-zA-Z0-9]+" required>
+    	<input type="submit" name="">
+    </form>
+
+    <form>
+    	<!-- 첫숫자는 2~3개 - 두번째는 3~4개  - 세번째는 4~5개 -->
+    	전화번호:
+    	<input type="text" name="" pattern="[0-9]{2,3}-[0-9]{3,44}-[0-9]{4,5}" required title="형식이 맞지 않을 때 보이는 글씨">
+    	<input type="submit" name="">
+    </form>
+
+    <!-- 나머지는 연습을 통해! -->
+
+    <hr>
+
+    <!-- hidden 속성 : 화면에 보이지는 않지만 서버 전송시에 값을 전달할때 사용.-->
+    <form action="aaa.php" method="get">
+    
+    	<input type="hidden" name="aaa" value="1234">
+    	
+    	<input type="text" name="name">  	
+
+    	<input type="submit" name="">    	
+    </form>
+    
+
+</body>
+</html>

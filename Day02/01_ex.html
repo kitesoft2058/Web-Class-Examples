@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+	<audio src="old_pop.mp3" autoplay="autoplay" controls>	
+		브라우저가 해당 음원의 파일형식을 지원하지 않으면 보이는 글씨이지만 브라우저마다 본인의 형식으로 에러를 표시해버림.
+		<!-- 마이크로소트프 엣지에서 ogg안보임. -->
+	</audio>
+
+	<!-- 브라우저에 따른 음원의 유형에 대응하기 위해 <sourc>태그 사용  -->	
+	<audio autoplay controls>	 
+		<source src="old_pop.mp3" type="audio/mp3"> <!--type="audio/mp3"을 MIME(Multiporpose internet mail extensions)타입이라 함.-->
+		<source src="old_pop.wav" type="audio/wav">
+		<source src="old_pop.ogg" type="audio/ogg">
+		브라우저가 해당 음원의 파일형식을 지원하지 않습니다.		
+	</audio>
+
+
+	<!-- 비디오는 오디오와 거의 같음. poster, width,height은 주는 것이 좋음. -->
+	<video controls>
+		<source src="movie.mp4" type="video/ogg"><!-- ogv파일의 MIME타입은 ogg임-->
+		지원되지 않는 비디오 형식.		
+	</video>
+
+	<!-- poster, width,height 적용 -->
+	<video controls poster="seolak.jpg" width="640" height="480">
+		<source src="trailer.webm" type="video/webm">
+		<source src="trailer.ogv" type="video/ogg">
+		지원되지 않는 비디오 형식.			
+	</video>
+
+	<br/>
+	<hr/>
+	<hr/>
+
+
+
+	<!-- iframe  -->
+	<iframe src="hello.html" width="300" height="150"></iframe>	
+
+	<!-- 다른 웹서버의 사이트도 표시 가능 -->
+	<iframe src="http://mrhi2017.dothome.co.kr/index.html" width="300" height="150" seamless></iframe>
+	<iframe src="http://www.w3.org" width="300" height="150" seamless></iframe>
+
+	<!-- 링크<a>에 의해 열리는 파일의 target으로 iframe 지정 -->
+	<iframe src="" name="aaa"></iframe>
+	<a href="http://www.w3.org" target="aaa">웹드와이드웹 공식 사이트</a>
+
+	<br/>
+
+	<!-- seamless가 새로 추가되었으나 아닞 적용되는 브라우저가 보이지 않음.. -->
+	<!-- 경계선 없애는 것은  frameborder=""로.   -->
+	<iframe src="hello.html" frameborder="" width="100%"></iframe>
+
+	<br/>
+	<hr/>
+
+
+	
+
+
+	<!-- <div> : divide 논리적 영역 구분 -->
+	<div style="background-color: yellow; border: 2px solid red; padding-left: 10px;" >
+		<h2>title</h2>
+		<p>this is message.</p>
+	</div>
+
+	<!-- <div>의 블럭요소(block) 특징 -->
+	<p>
+		안녕하세요 나는 <div style="color: blue">홍길동</div> 입니다.
+	</p>
+
+	<!-- <span>의 인라인 요스(inline) 특징-->
+	<p>
+		안녕하세요 나는 <span style="color: blue">홍길동</span> 입니다.
+	</p>
+
+
+	<!-- div의 영역 레이아웃 구조 연습 -->
+	<!-- <div>의 영역구분은 나중에 웹페이지의 헤더영역, 메뉴영역, 본문영역, 하단영역을 구분하는데 주요한 역할을 함. -->
+	<div id="header" style="background-color: yellow; height: 20px"></div>
+	<div id="content" style="background-color: green; height: 100px"></div>
+	<div id="footer" style="background-color: blue; height: 20px"></div>
+
+
+
+
+</body>
+</html>

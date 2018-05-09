@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+	<!-- get Method Form 연습 -->
+	<form action="getTest.php" method="get">
+		<input type="text" name="name">
+		<input type="text" name="msg">
+
+		<input type="submit" value="submit">		
+	</form>
+
+	<hr>
+	<hr>
+
+	<!-- post Method Form 연습 -->
+	<form action="postTest.php" method="post">
+		<fieldset>
+			<legend>input &amp; post test</legend>
+
+			<label for="in">name : </label>
+			<input type="text" name="name">
+			<br>
+
+			<label>pass : <input type="password" name="pw"></label><br>
+
+			<p>gender : 
+				<label><input type="radio" name="rg1" value="male" checked>male</label>
+				<label><input type="radio" name="rg1" value="female">female</label>
+			</p>
+
+			<p>fruit:
+				<label><input type="checkbox" name="fruits[]" value="apple" checked>Apple</label>
+				<label><input type="checkbox" name="fruits[]" value="banana" checked="">Banana</label>
+				<label><input type="checkbox" name="fruits[]" value="orange">Orange</label>				
+			</p>
+
+			<p>
+				massage :<br>
+				<textarea cols="40" rows="5" name="msg"></textarea>
+			</p>
+
+			<div>				
+				<select name="sel">
+					<optgroup label="자동차브랜드">
+						<option value="현대">현대</option>
+						<option value="기아">기아</option>
+						<option value="쉐보레">쉐보레</option>			
+					</optgroup>
+				</select>
+			</div>
+
+			<div>	
+				<input type="submit" value="제출">
+				<input type="reset" value="초기화">
+			</div>
+
+
+			<hr>
+			<input type="image" src="emoticon.png" alt="제출버튼이미지">
+
+			
+		</fieldset>		
+	</form>
+
+
+</body>
+</html>
