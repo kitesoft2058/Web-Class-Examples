@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<style type="text/css">
+		a#anchor:link{color:blue;}
+		a#anchor:visited{color:green;}
+		a#anchor:hover{color:red; font-size: 2em}
+		a#anchor:active{color:yellow;}
+
+
+		/*문서에 마우스를 올려놓으면 적용.*/
+		/*:hover{background-color: red;};*/
+
+		p:hover{background-color: green;}
+
+		img{background-color: yellow; border: 2px solid red;}
+		img:hover{background-color: gray; width: 100%}
+
+
+		ul.a { list-style-type: circle; }
+        ul.b { list-style-type: disc;}
+
+        /*list-style-position: inside(들여쓰기), outside(기본위치) */
+        ul.c { list-style-type: square; list-style-position: inside;}
+
+        /*리스트 이미지는 사이즈 조절이 번거로워 잘 사용하지 않음.*/
+        ul.d { list-style-image: url('coffee.gif'); }
+
+	</style>
+</head>
+<body>
+
+	<a href="" id="anchor">aaaaaaa<a>
+	<p>asdfasdf</p>
+
+	<img src="image.png">
+
+	<hr>
+
+
+	<ul class="a">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JAVASCRIPT</li>
+    </ul>
+    <ul class="b">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JAVASCRIPT</li>
+    </ul>
+    <ul class="c">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JAVASCRIPT</li>
+    </ul>
+    <ul class="d">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JAVASCRIPT</li>
+    </ul>
+
+</body>
+</html>

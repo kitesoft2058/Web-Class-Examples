@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+		p{font-family: "Blippo Blk BT", serif;}
+		p{font-family: "BrushScript BT", sans-serif;}
+		p{font-family: fantasy;}
+		p{font-family: cursive;}
+		p{font-family: monospace;}
+
+
+		p{font-family: "YWDA05","휴먼매직체", sans-serif;}
+		
+		/*한글은 못알아듣는 겨우가 많으니 웹폰트가 좋을듯*/
+
+		@font-face{
+			font-family: "My Font";
+			src:url("YSOS07.TTF");
+			/*src:url("YWDA05.TTF");*/
+			/*css의 다른 파일 경로는 url로. */
+		}
+
+		p{font-family: "MY Font"}
+
+		/*%와 비슷함. 부모요소의 폰트사이즈를 기준으로 */
+		p{font-size: 2.0em;}
+
+		/*bold, normal*/
+		p{font-weight: bold;}
+
+		/*normal, italic(필기체느낌 기울기), oblique(그냥 기울기)*/
+		p{font-style: oblique;}
+
+
+		/*텍스트 정렬*/
+		/*양쪽정렬*/		
+		p{text-align: justify;}
+
+		/*가운데 정렬*/
+		p{text-align: center;}
+
+		/*텍스트 변환*/
+		/*단어의 첫글자 대문자*/
+		p{text-transform: capitalize;}
+		p{text-transform: lowercase;}
+
+		/*텍스트 그림자*/
+		p{text-shadow: 5px 3px 5px red;}
+
+		/*워드 랩*/
+		p.aaa{
+			width: 5em;
+			border: 1px solid blue;
+			/*워드랩이 없으면 긴글씨는 영역을 벗어남.(한글은 자동 워드 랩되어 있음.)*/
+			/*word-wrap: break-word;*/
+		}
+
+		p.lorem{
+			column-count: 2;
+			column-gap: 80px;
+			column-rule: 4px dashed green;
+		}
+
+
+
+	</style>
+</head>
+<body>
+
+	<p>abcdefg</p>
+	<p>한글은 어떠한가.</p>
+	<p class="lorem">
+		ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</p>
+
+
+	<p class="aaa">
+		<!-- 한글은 전형 문제 없이 자동으로 워드랩 됨. -->
+		asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf
+	</p>
+	
+
+
+
+	
+</body>
+</html>

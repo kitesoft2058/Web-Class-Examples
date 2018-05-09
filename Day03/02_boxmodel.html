@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+
+		p.border{
+			/*사이즈(width) 없어도 스타일이 있으면 자동 지정(3px)*/
+			border-style: solid;
+
+			/*top, right, bottom, left로 나누어 스타일 가능*/
+			border-top-style: dotted; 
+
+			/*px, thick, medium, thin*/
+			border-width: 3px;
+			border-bottom-width: 8px;
+
+			/*색상*/
+			border-color: red;
+			border-right-color: blue;
+
+			/*모서리 둥글게*/
+			border-radius: 20px;
+			border-bottom-left-radius: 0px;
+			border-top-right-radius: 0px;
+
+			/*경계선 이미지*/
+			/*css의 다른 파일 경로는 url로. */
+			border: 30px solid transparent; /*border 축약형*/ 
+
+            /*-webkit-border-image: url(border.png) 30 30 round; /* Safari 5+ */
+            /*-o-border-image: url(border.png) 30 30 round; /* Opera */
+            /*border-image: url(border.png) 30 30 round; /* Chrome */
+            border-image-source: url(border.png);
+            border-image-slice: 30 30; /*높이,너비*/
+            border-image-repeat: round;
+            /*round가 동일하게 반복해 주는 것*/
+            /*stretch는 쭉늘려준다는 의미  이미지경로, image-slice: 높이:30픽셀, 너비:30픽셀 */	
+
+            /*요소 크기*/
+            width: 70%;
+            height: 400px;
+            margin-left: 50px;
+
+            /*중앙 정렬*/
+            /*요소의 너비가 화면보다 작을 때만 가능.*/
+            margin-left: auto; margin-right: auto; 
+        }
+
+        /*인라인 요소들중 일부는 width, height이 안됨.*/
+        img{width: 500px;}
+        input{background-color: aqua; width: 100%;}
+
+
+        /*a, em은 width 안됨*/
+        a{background-color: red; width: 100%;}
+        em{background-color: aqua; width: 100%;}
+
+
+        /*마진 연습*/
+        div.margin{
+        	padding: 0px;
+        }
+
+        /*두 요소의 마진은 서로 겹침.*/
+        /*아래마진과 위마진을 주면 더 멀어질 것 같지만 실제로 마진은 겹칩.*/
+        #p1{background-color: red; height: 50px; margin: 0px; margin-bottom: 10px;}
+        #p2{background-color: green; height: 50px; margin: 0px; margin-top: 10px;}
+
+        /*마진에 음수를 넣으면 요소간에 겹침 가능.*/
+        #p1{background-color: red; height: 50px; margin: 0px;}
+        #p2{background-color: green; width:50%; height: 50px; margin: 0px; margin-top: -20px;}
+
+
+		p#background{
+			background-color: green;
+			background-image: url("image.png");
+			background-size: 200px 100px;
+
+			background-repeat: repeat;/*기본*/
+			background-repeat: repeat-x;
+			background-repeat: no-repeat;
+
+			background-position: center;
+			background-position: right top;
+			background-position: top center;
+
+			background-attachment: scroll;/*기본*/
+			background-attachment: fixed;
+			background-attachment: local;/*요소의 콘텐츠와 같이 스크롤:콘텐츠가 요소보다 클때!*/
+
+			/*background: green url('image.png') no-repeat center;*/
+
+			margin: 20px;
+			padding: 30px;
+		}
+
+		body{
+			/*background-color: yellow;*/
+		}
+
+		
+	</style>
+</head>
+<body>
+
+	<p class="border">
+		ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</p>
+	
+
+	<!-- 인라인 요소 : 너비조정 가능-->
+	<img src="back.jpg">
+	<input type="text" name="">
+
+	<!-- 인라인 요소 : 너비조정 불가능-->
+	<a href="">asdfasdf</a>	
+	<em>asdfasdfasdf</em>
+
+	<hr>
+	<!-- margin -->
+	<div class="margin">
+		<p id="p1">p1</p>
+		<p id="p2">p2</p>		
+	</div>
+
+	
+	<p id="background">
+		ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</p>
+	
+	
+</body>
+</html>
