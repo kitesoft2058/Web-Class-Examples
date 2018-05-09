@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<style>
+		/*display속성*/
+		.aaa{
+			position: relative;
+			background-color: black;
+		}
+
+
+
+		/*poistion속성 연습 */
+        #one {
+            background-color: cyan;
+            width: 200px;
+            height: 50px;
+        }
+
+        /*absolute적용시에 부모요소를 기준으로 하려면 부모의 position이 static이면 안됨.*/
+
+        #two {
+            position: absolute;
+            left: 50px;
+            top: 30px;
+            background-color: yellow;
+            width: 200px;
+            height: 50px;
+        }
+
+        #three {
+            background-color: lightgreen;
+            width: 200px;
+            height: 50px;
+        }
+    </style>
+
+
+
+</head>
+<body>
+
+	<!-- display속성 연습 -->
+	<div class="aaa">	
+		<!-- position속성 -->
+		<p id="one">block #1</p>
+		<div id="two">block #2</div>
+		<p id="three">block #3</p>		
+	</div>
+
+		
+	
+
+
+
+</body>
+</html>

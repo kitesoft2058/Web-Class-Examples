@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+		
+		div.aa img{		
+			background-color: red;
+			width: 200px;
+			height: 100px;
+		 	transition: width 3s, height 3s, transform 3s, background-color 3s;
+		 	/*크롬 사파리*/
+		 	-webkit-transition: width 3s, height 3s, transform 3s, background-color 3s;
+		 	/*모질라 파이어폭스*/
+		 	-moz-transition: width 3s, height 3s, transform 3s, background-color 3s;
+		 	/*오페라*/
+		 	-o-transition: width 3s, height 3s, transform 3s, background-color 3s;
+		 	
+		}
+
+		div.aa img:hover{
+			width: 300px;
+			height: 150px;
+
+			transform: rotate(30deg);
+			transform: rotate(1.5rad);
+
+			/*transform: translate(100px, 0px);
+			transform: scale(1.2, 1.2);*/
+
+			/*다중 transtorm*/
+			transform: rotate(30deg) scale(1.2, 1.2) translate(80px, 0px);
+
+			/*색상의 변화를 주면 칼라가 자연스럽게 변형됨.*/
+			background-color: blue;
+
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="aa">
+		<img src="lion.png">
+		<img src="lion2.png">
+	</div>
+	
+</body>
+</html>

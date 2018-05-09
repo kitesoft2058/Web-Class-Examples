@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        img.a { float: left  }
+
+        .clear{ clear: both; }
+    </style>
+</head>
+
+<body>
+    <img class="a" src="sunshine.jpg" width="160" height="120" />
+    <p >
+      생활이 그대를 속일지라도     
+      슬퍼하거나 노여워 말라.
+	...
+    </p>
+
+    <!-- 위의 img에 적용된 float에 의해 상관없는 이 요소까지 딸려가 버림. -->
+    <!-- 위에 적용된 float의 특성르 없애려면 clear속성 적용. -->
+    <!-- 이 clear속성은 이 요소뿐이 아니더라도 여러 군데에서 사용될 가능성이 많아서 보통 클래스명을 clear로  -->
+    <p class="clear">여기는 위의 이미지와 상관없는 새로운 블럭입니다.</p>
+
+</body>
+</html>
