@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>table EX</title>
+</head>
+<body>
+
+	<table border="10">
+		<!-- 테이블 헤더 -->
+		<tr>
+			<th>no</th>
+			<th>name</th>
+			<th>message</th>
+		</tr>
+
+		<tr>
+			<td>1</td>
+			<td>aaa</td>
+			<td>hello</td>
+		</tr>
+
+		<!--각 행(row)의 데이터(셀)개수가 다를 수 있음-->
+		<tr>
+			<td>2</td>
+			<td>bbb</td>
+			<td>nice to meet you.</td>
+			<td>20170514</td> 
+		</tr>
+	</table>
+
+
+	<!-- 셀병합 -->
+	<table border="1">
+
+
+
+		<!-- 한줄만 있을때는 span의 영향이 없음. 여러줄일때만 비교대상이 있어서 span이 적용됨 -->
+		<tr>
+			<td rowspan="2">111</td>
+			<td colspan="3">222</td>
+			<td>333</td>
+		</tr>
+
+		<tr>
+			<td>444</td>
+			<td>555</td>
+			<td>6666666666666</td>
+		</tr>
+
+		<!-- 테이블 전체 제목(caption) -->
+		<caption>테이블 제목</caption>
+		<!-- 위치에 상관없이 무조건 표의 상단에 배치됨. 추후 CSS를 통해 위치조정 가능함. -->
+
+	</table>
+
+
+	<!-- 테이블 <td></td>안에 다른 요소(element) 넣기 -->	
+	<table border="1" width="100%"><!--테이블의 전체 너비는 셀의 영역을 합한 사이즈가 기본이며 table에 width를 지정하면 셀들은 기본적으로 균등분할됨.-->
+		<tr>
+			<!-- <td>에 <a>태그 넣기. 한눈에 보기 어려운면 줄바꿈.. 보기 편하게 셀 너비(width) 지정가능:default는 wrap_content-->
+			<td width="30%">
+				<a href="http://www.naver.com">NAVER</a>
+				<!-- 내용물이 길면 width속성보다 wrap_content가 우선됨. -->
+				<!-- <a href="http://www.naver.com">NAVERasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfdad</a> -->
+			</td>
+
+			<!-- <td>에 <ul>태그 리스트 넣기. 한눈에 보기 어려운면 줄바꿈.. -->
+			<td>
+				<ul>
+					<li>aaaa</li>
+					<li>bbb</li>
+					<li>ccc</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr>
+			<!-- <td>에 <p>태그 리스트 넣기. 한눈에 보기 어려운면 줄바꿈.. -->			
+			<td>
+				<!-- 텍스트가 한글이면 width에 영향을 주지 않고 자동 줄바꿈.-->
+				<p>테이블 안에는 어떤 요소든 넣을 수 있음. 한글이면 자동으로 줄바꿈 됨.</p>
+				<!-- 영어는 wrap_content -->
+				<!-- <p>asdfasdfasdfasdjfkjaskldjflaksjdfkjalksdjflkajsfjaklsjdfklajsdlfjkalksdjfl</p> -->
+			</td>
+
+			<!-- <td>에 <img>태그 리스트 넣기. 한눈에 보기 어려운면 줄바꿈.. -->
+			<td>
+				<!-- 사이즈 픽셀도 가능도하고 퍼센트도 가능함. -->
+				<!-- %의 경우 본인(img)의 부모(td)요소의 너비를 기준으로 함. -->
+				<img src="images/hubble.jpg" width="70%" height="150">	
+				<!-- 이미지 가운데 정렬은 추후 CSS에서 소개. <td style="text-align: center;">-->
+			</td>
+		</tr>
+
+		
+
+	</table>
+
+</body>
+</html>
