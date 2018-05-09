@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script type="text/javascript">
+
+		function keypress(){
+			var s="키 다운 : ";
+			// s+= event+"\n";
+			// s+= event.keyCode+"\n";
+			// s+= String.fromCharCode(event.keyCode)+"\n";
+			// s+= event.altKey+"\n";
+			// s+= event.ctrlKey+"\n";
+			// s+= event.shiftKey+"\n";
+
+			 // 아래 예제로 소개.
+
+			alert(s);
+		}
+	</script>
+	
+</head>
+<body onkeypress="keypress()"> <!--onkeyup, onkeydown은 소문자를 모두 대문자로 처리해버림.-->
+
+	아무 키나 입력해보세요.
+	<br>char <input type='text' id='keychar' />
+	<br>keycode <input type='text' id='keycode' />
+	<br>Alt키 <input type='checkbox' id='altkey' />
+	<br>Ctrl키 <input type='checkbox' id='ctrlkey' />
+	<br>Shift키 <input type='checkbox' id='shiftkey' />
+
+	<script>
+	function keypress() {
+		var keycode = event.keyCode;
+		if ( keycode == 8 // 백스페이스 
+			|| keycode == 116 // F5
+		) event.returnValue = false; // 브라우저 기능 키 무효화
+		document.getElementById('keychar').value = String.fromCharCode( keycode );
+		document.getElementById('keycode').value = keycode;
+		document.getElementById('altkey').checked = event.altKey;
+		document.getElementById('ctrlkey').checked = event.ctrlKey;
+		document.getElementById('shiftkey').checked = event.shiftKey;
+	}
+	</script>
+
+
+	<hr/>
+	<input type="text" name="" onkeypress="aaa()">
+	<script type="text/javascript">
+		function aaa(){
+			alert(this); //<--여기서 this는 윈도우 객체..:window(아래 이벤트리스너추가 예제 후..this검토)
+		}
+	</script>
+
+	<hr/>
+	<input type="text" name="" id="in1">
+	<script type="text/javascript">
+
+	    var kkk= function(){
+	    	alert(this);
+	    }
+
+		document.getElementById('in1').addEventListener('keypress', kkk);
+		
+		
+
+		// document.getElementById('in1').addEventListener('keypress', function(){
+		// 	alert(this); //<-this는 이벤트를 발생시킨 요소: html
+
+		// 	//this.value= this.value.toUpperCase(); //키보드의 입력자판을 뗄때 마다 대문자로 변경..
+
+		// });
+	</script>	
+
+	<!-- 연습문제 p.416 -->
+
+</body>
+
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<script type="text/javascript">
+		//이벤트를 처리하는 3가지 방법
+		//1. html에서 요소에 속성으로 콜백함수 지정. <button onclick="aaa()">
+		//2. 자바스크립트에서 요소를 찾아와서 이벤트콜백 속성에 함수 지정.		
+		//3. 요소에 특정 이벤트리스너를 추가하는 메소드를 통해 처리.
+
+
+		// onload 이벤트 - 문서의 로드가 모두 완료되면 발생하는 이벤트
+		
+		// body안에 있는 요소제어
+		document.getElementById('aa').innerHTML="Hello"; //이건 처리 안됨. 아직 요소가 없어서!
+
+		//로딩이 완료된 후 발생한 onload 이벤트에 적용된 함수
+		function loaded(){
+			document.getElementById('aa').innerHTML="Hello";
+
+			//2. onclick 이벤트를 자바스크립트에서 처리하기.
+			document.getElementById('aa').onclick= function(){
+				//alert('clicked hello!');
+				document.getElementById('aa').innerHTML+="asdfasdf";
+			}
+
+			
+			// document.getElementById('aa').ondblclick= function(){
+			// 	alert('duble');
+			// }
+
+			//3. 요소에 이벤트리스너 추가 메소드. -익명함수를 콜백함수로 지정!
+			document.getElementById('aa').addEventListener('dblclick', function(){
+				alert('asdfasdf');
+			});
+
+			// document.getElementById('aa').addEventListener('click', function(){
+			// 	alert('click');
+			// });
+		}
+		
+	</script>
+</head>
+<body onload="loaded()">
+
+	<h2 id="aa"></h2>
+
+
+	<!-- input요소의 입력필드값 변경이벤트 -->
+	<input type="text" name="" id="in1" onfocus="aaa()">
+	<input type="text" name="" onblur="bbb()" onchange="ccc()">
+	<script type="text/javascript">
+
+		function aaa(){
+			document.getElementById('in1').value="aa";
+		}
+
+		function bbb(){
+			alert('blur');
+
+		}
+
+		function ccc(){
+			alert('change');
+
+		}
+	</script>
+
+	<hr/>
+	<!-- 사용자가 값을 입력하고 필드를 벗어나면 자동으로 대문자로 변경해주는 입력필드 -->
+	<input type="text" name="" id="in2" onchange="changeUp()">
+	<script type="text/javascript">
+
+		function changeUp(){
+			var s=document.getElementById('in2').value;
+			document.getElementById('in2').value= s.toUpperCase();
+		}
+	</script>
+
+	<!-- 마우스 이벤트 -->
+
+	<!-- 마우스 over, out, move -->
+	<div style="width: 200px; height: 100px; background-color: yellow;" onmouseover="over(this)" onmouseout="out(this)" onmousemove="move(this)"></div>
+
+	<script type="text/javascript">
+		function over(e){
+			e.style.backgroundColor="lightgreen";
+			e.style.border="2px solid red";
+		}
+
+		function out(e){
+			e.style.backgroundColor="yellow";
+			e.style.border="";
+		}
+
+		var a=0;
+		function move(e){
+			a++;
+			e.innerHTML= a+"";
+		}
+	</script>
+
+	<!-- 마우스 move 좌표!! & MouseEvent객체-->
+	<div style="width: 200px; height: 100px; background-color: green;" id="kk"></div>
+	<script type="text/javascript">
+		document.getElementById('kk').addEventListener('mousemove', function(e){
+			var str="client coord : "+ e.clientX+ " , " +e.clientY+"<br/>"; // 브라우저 문서안에서의 좌표
+			str+= "screen coord : "+ e.screenX+ " , " + e.screenY+"<br/>"; //모니터 해상도 좌표
+			str+= "offset coord : "+ e.offsetX+ " , " + e.offsetY;  //영역안에서의 좌표
+
+			document.getElementById('kk').innerHTML= str;
+		});
+	</script>
+
+
+	<!-- 마우스 다운 & 업 -->
+	<button id="btn">button</button>
+	<script type="text/javascript">
+		var btn= document.getElementById('btn');
+
+		//이벤트리스너 추가로. 처리..
+		btn.addEventListener('mousedown', function(){
+			btn.style.backgroundColor="#ff0000";
+			btn.style.color="#ffff00";
+			btn.style.fontSize="2em";
+		});
+
+
+		//익명함수를 변수에 넣어 리스너로 추가하기..
+		var up= function(){
+			btn.style.backgroundColor="";
+			btn.style.color="";
+			btn.style.fontSize="0.5em";//or btn.style.fontSize="";
+		}
+		btn.addEventListener('mouseup', up);
+	</script>
+
+
+	<!-- 키보드 이벤트는 .... 05_keyvent에서..소개 -->
+
+	<!-- 입력폼의 입력 후 검증 : 정규표현식 + onblur 이벤트로 보통 처리함. -->
+	<hr/>
+	<h3>RegExp 객체 ( Regular expression )</h3>
+
+	<input type="text" name="" id="in5">
+	<button onclick="checkReg()">check</button>
+	<p id="p5"></p>
+
+	<script type="text/javascript">		
+
+		function checkReg(){
+
+			// 검증용 정규표현식
+			var regExp= /^[a-zA-Z]+$/;  //RegExp객체. (영문자한개 이상)
+
+			var t= document.getElementById('in5').value;
+			var p= document.getElementById('p5');			
+
+			// 정규포현식 검증 2가지 방법.
+			// 1. String  .match() 메소드
+			if( t.match(regExp) ) alert('OK');
+			else alert('요구하는 형식이 아닙니다.');
+
+			//2. RegExp 객체의 test() 메소드
+			if( regExp.test(t)) p.innerHTML='OK';
+			else p.innerHTML='요구하는 형식이 아닙니다.';			
+
+
+			// 정규표현식 연습 - 예시
+			regExp=/a/;      // a가 포함되는 모든...
+			regExp=/A/;      // A가 포함되는 모든...
+			regExp=/ab/;     // ab가 포함되는 모든...
+			regExp=/^a/;     // 시작이 무조건 a...
+			regExp=/^[a-z]/;  // 시작이 무조건 영어소문자..
+			regExp=/a$/;     // 끝이 무조건 a...
+			regExp=/ab$/;     // 끝이 무조건 ab...
+			regExp=/^a$/;     // 무조건 a 1개...(시작이 a이고 끝이 a..가 아님!)
+			regExp=/^ab$/;    // 무조건 ab 1개..
+			regExp=/^[a-z]$/; // 무조건 영어소문자 1개.. 
+			regExp=/^[a-zA-Z]$/;   //영어소문자 또는 영어 대문자 1개.
+			regExp=/^[a-zA-Z0-9]$/;  //영어소문자 또는 숫자 1개.
+			regExp=/^[a-z]{2}$/;    //영어 소문자 2개.
+			regExp=/^[a-z]{2,4}$/;    //영어 소문자 2~4개.
+			regExp=/^[a-z]*$/;         //영어 소문자 0개 이상.(영어 소문자만). 값이 없어도 OK
+			regExp=/^[a-z]+$/;         //영어 소문자 1개 이상.(영어 소문자만).
+			regExp=/^[a-z]?$/;         //영어 소문자 0,1 개..(영어 소문자만). 값이 없어도 OK
+			regExp=/^[0-9]$/;          //0-9숫자 1개
+			regExp=/^[5-9]$/;          //5-9숫자 1개 
+			regExp=/^\d$/;             //숫자 1개.
+			regExp=/^\d\d\d$/;         //숫자 3자리.
+			regExp=/^\d{3,4}$/;        //숫자 3~4자리.
+			regExp=/^\d\da\d\da\d\d$/; //숫자2 a 숫자2 a 숫자2 
+
+			regExp=/^\d\d\d\d-\d\d-\d\d$/;   //####-##-## - 생년월일
+			regExp=/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-z]+$/;     // #####@###.## - 이메일
+			regExp=/^http:/    //시작이 http: - url주소
+
+			regExp=/^\/$/;             // '/'한개. (역슬래시가 이스케이프문자)
+
+
+			//2. RegExp 객체의 test() 메소드
+			if( regExp.test(t)) p.innerHTML='OK';
+			else p.innerHTML='요구하는 형식이 아닙니다.';			
+		}
+		
+	</script>
+
+	<!-- 연습문제 p.416 -->
+
+</body>
+</html>

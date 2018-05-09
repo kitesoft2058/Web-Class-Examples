@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+	<!-- BOM(Browser Object Model) -->
+	<!-- 1. window : 최상위 객체 -->
+
+	<!-- 주요 메소드들. -->
+	<!-- 1) open, close-->
+	<button onclick="aaa()">naver</button>
+	<script type="text/javascript">
+		function aaa(){
+
+			//window.open('http://www.naver.com');//기본 _blank
+			//window.open('http://www.naver.com', '_self'); //target
+
+			//옵션들(specs)
+			//width는 height과 항상 같이 있어야함.
+			//window.open('http://www.naver.com', '_blank', 'width=300, height=150');
+			var specs= 'width=500, height=200, left=200, top=150';
+
+			//var specs= "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=300,width=300,height=400, location=no";//스펙은 안되는 브라우저가 많음.
+			window.open('http://www.naver.com', '_blank', specs);
+		}
+	</script>
+
+	<!-- 빈 윈도우 띄우기.. -->
+	<button onclick="bbb()">massage window</button>
+	<script type="text/javascript">
+		function bbb(){
+			var win= window.open('','', 'width=500, height=200, left=200, top=150');
+			win.document.write("<h4>Hello world!!</h4>");
+			win.document.write("<p>This widnow is Message Window</p>");
+		}
+	</script>
+
+	<!-- 윈도우 닫기 -->
+	<button onclick="ccc()">close window</button>
+	<script type="text/javascript">
+		function ccc(){
+			close();
+		}
+	</script>
+
+	<!-- 윈도우 열고 닫기 -->
+	<button onclick="ddd()">open</button>
+	<button onclick="eee()">open</button>
+	<script type="text/javascript">
+		var win;
+		function ddd(){
+			win= open('','','width=500, height=200, left=200, top=150');
+			win.document.write('aaaaa');
+		}
+
+		function eee(){
+			win.close();
+		}
+	</script>
+
+	<hr/>
+	<h4>moveTo, moveBy</h4>
+	<button onclick="aaa()">open window</button>
+	<button onclick="bbb()">move window</button>
+	<script type="text/javascript">
+
+		//위에서 사용했던 함수이름을 똑같이 사용하면..? 마지막 것으로 갱신...		
+		function aaa(){
+			w= open('','','width=500, height=200');
+			w.document.write('오늘의 특가 제품입니다.!!');
+			w.moveTo(300, 100);
+		}
+
+		function bbb(){
+			w.moveBy(10,10);//창의 끝에 가면 더이상 이동 안됨.
+			//움직였을때 상위에 있고 싶다면..
+			w.focus();
+		}
+	</script>
+
+
+	<hr/>
+	<h4>setTimeout, setInterval, clearInterval</h4>
+	<button onclick="showAlert()">3초 후 경고창 띄우기.</button>
+	<script type="text/javascript">
+			function showAlert(){
+				setTimeout( function(){
+					alert('3초 경과!');
+				}, 3000 );
+			}
+	</script>
+
+	<br/>
+	<input type="text" name="" id="in1" value="0">
+	<button onclick="startCount()">1초 카운트 증가!</button>
+	<button onclick="stopCount()">반복 종료</button>
+	<script type="text/javascript">
+
+			var show= function(){
+				
+				var e=document.getElementById('in1');				
+				//e.value=e.value+1;//<문자형이므로 더하기 문제 있음.
+				e.value= parseInt(e.value)+1;
+				
+			}
+
+			var a;
+			function startCount(){
+				a= setInterval( show, 1000);
+			}
+
+			function stopCount(){
+				clearInterval(a);
+			}
+	</script>
+
+	<!-- 2. document : 웹페이지의 문서객체 - 원래는  window.document가 맞음. -->	
+	<!-- 특별한 실습 없음. -->
+
+	<!-- 3. screen : 화면의 사이즈 및 color정보 -->
+	<hr/>
+	<h2>screen 객체</h2>
+	
+	<script type="text/javascript">
+		//모니터의 화면 해상도
+		document.write("화면 해상도 : "+ screen.width+ " , "+ screen.height+"<br/>");
+		document.write("작업표시줄 제외 사이즈: "+ screen.availWidth+" , "+ screen.availHeight+"<br/>");		
+		
+		function fullWindow(){
+			var specs= 'width='+ screen.availWidth+','+'height='+screen.availHeight;
+			w= open('','', specs);
+
+			//or 윈도우를 일정사이즈로 띄우고 버튼으로 전체화면으로 만들기..
+			// w= open('','','width=300, height=400');
+			// w.document.write('<button onclick="window.resizeTo(screen.availWidth,screen.availHeight)">전체화면</button>');
+		}
+	</script>
+
+	<button onclick="fullWindow()">전체 화면 윈도우</button><br/>
+
+	<!-- 브라우저 윈도우의 사이즈는?? window객체에게 물어볼것.-->
+	<script type="text/javascript">
+		document.write('브라우저 document 영역 사이즈 : '+ window.innerWidth+" , "+ innerHeight+"<br/>");
+		document.write('브라우저 전체 사이즈 : '+ window.outerWidth+" , "+ outerHeight+"<br/>");
+	</script>
+
+<!-- 
+/* XHTML 표준이 없다 */
+// 가로길이
+document.body.offsetWidth 
+document.body.scrollWidth // (문서 전체의 크기)
+document.body.clientWidth // (창의 크기)
+// 세로길이
+document.body.offsetHeight
+document.body.scrollHeight //(문서 전체의 크기)
+document.body.clientHeight // (창의 크기)
+
+/* HTML5 표준이 정해져 있다. */
+// 가로 길이
+window.innerWidth // 브라우저 윈도우 두께를 제외한 실질적 가로 길이
+window.outerWidth // 브라우저 윈도우 두께를 포함한 브라우저 전체 가로 길이
+//세로길이
+window.innerHeight // 브라우저 윈도우 두께를 제외한 실질적 세로 길이
+window.outerHeight // 브라우저 윈도우 두께를 포함한 브라우저 전체 세로 길이
+ -->
+	
+
+
+
+	<!-- 4. location : URL 정보.  -->
+	<hr/>
+	<h2>location 객체</h2>
+	<script type="text/javascript">
+		// location객체의 주요속성 : host, hostname 등은 실제 호스팅 서버에 올렸을 때 확인 가능.
+		document.write(location.href+'<br/>');
+		document.write(location.protocol+'<br/>');
+		document.write(location.pathname+'<br/>');
+	</script>
+
+	<button onclick="assign()">새로운 문서 열기</button>
+	<button onclick="reload()">현재 문서 다시 열기</button>
+	<button onclick="replace()">새로운 문서로 대체해서 열기</button>
+
+	<script type="text/javascript">
+		function assign(){
+			location.assign('http://www.naver.com'); //뒤로 가기가 있음.
+		}
+
+		function reload(){
+			location.reload(); //현재 문서 갱신. (새로고침..)
+		}
+
+		function replace(){
+			location.replace('http://www.naver.com'); //뒤로가기가 없음.
+		}
+	</script>
+
+	<!-- 5. history : 방문한 URL정보 -->
+	<hr/>
+	<h2>history 객체</h2>
+	<script type="text/javascript">
+		document.write('방문한 페이지 수 : '+ history.length+"<br/>");
+
+		function back(){ history.back();}
+		function forward(){ history.forward();}
+		function go(){ history.go(-2); }
+	</script>
+
+	<button onclick="back()">뒤로</button>
+	<button onclick="forward()">앞으로</button>
+	<button onclick="go()">2칸 뒤</button>
+
+	<!-- 6. navigator : 브라우저 정보. (굳이 할 필요? 나중에 내 위치 검색할때...사용.)-->
+	<hr/>
+	<h2>navigator 객체</h2>
+	<script type="text/javascript">
+		//사용하는 브라우저 정보 얻어오기.
+		document.write("<p> 브라우저 코드명 : ", navigator.appCodeName + "</p>");
+		document.write("<p> 브라우저 종류 : ", navigator.appName + "</p>");
+		document.write("<p> 브라우저 버전 : ", navigator.appVersion + "</p>");
+		document.write("<p> 브라우저  플랫폼 :  ", navigator.platform + "</p>");
+		document.write("<p> 브라우저  에이전트: ", navigator.userAgent +"</p>");
+	</script>
+
+</body>
+</html>

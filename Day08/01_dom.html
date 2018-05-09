@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>	
+</head>
+<body>
+<!-- 
+	// DOM(Document Object Model), BOM(Browser Object Model) p.377참고
+	// DOM트리의 가지 하나하나를 node 라고 함.
+	// node의 종류 : element node, attribute node, text node, doucument node(window, document..) 
+	// 노드간의 관계 : parent node, child node, sibling node <-이 관계를 이용해서 요소를 제어 가능.
+
+	// 1. DOM
+	// 2. BOM
+ -->
+	<!-- node의 타입 확인하기 -->
+	<p id="p1"><a href="" target="">bbb</a> </p>
+
+	<script type="text/javascript">
+
+		//id=p1인 p요소
+		var e=document.getElementById('p1');
+		alert(e.nodeType+" , "+ e.nodeName);  //nodeType 1 : element node
+
+		//p요소의 속성
+		var attrs= e.attributes;
+		alert(attrs[0].nodeType+" , "+attrs[0].nodeName); //nodeType 2 : attribute node
+		alert('속성값 : ' + attrs[0].value); // 속성 값 : p의 id값 - 'p1'
+
+
+		//p요소의 첫번째 자식 노드 : a요소
+		var e= e.firstChild;
+		alert(e.nodeType+" , "+ e.nodeName); //nodeType 1 : element node
+
+		//a요소의 속성
+		var attrs= e.attributes;
+		alert(attrs[0].nodeType+" , "+attrs[0].nodeName); //nodeType 2 : attribute node
+		alert(attrs[1].nodeType+" , "+attrs[1].nodeName); //nodeType 2 : attribute node
+
+		//a요소의 첫번째 자식 노드 : 텍스트
+		var t= e.firstChild;
+		alert(t.nodeType+" , "+ t.nodeName);  //nodeType 3 : text node
+		alert('텍스트값 : ' + t.data); //text의 값. "bbb"
+
+	</script>
+
+	<hr/>
+
+	<!-- 자식노드 제어하기..-->
+	<ul>
+		<li>aaa</li>
+		<li>bbb</li>
+		<li>ccc</li>
+		<li>ddd</li>		
+	</ul>
+
+	<ul>
+		<li>kkk</li>
+		<li>sss</li>	
+	</ul>
+
+	<script type="text/javascript">		
+		//li 요소 전체 개수.
+		var items= document.getElementsByTagName('li');
+		alert(items.length);
+
+		//첫번째 ul 요소의 자식들중에 li요소의 개수
+		var list= document.getElementsByTagName('ul');
+		var items= list[0].getElementsByTagName('li');
+		alert(items.length);
+
+		//3번재 li의 텍스트노드 값 - ccc
+		alert( items[2].firstChild.data);
+
+		
+		//ul요소의 자식 중 첫번째 요소의 텍스트노드 값과 마지막 요소의 텍스트노드값 얻어오기.
+
+		//<ul>의 첫번째 자식노드는 누구일까??
+		alert( list[0].firstChild.nodeName ); 
+		//첫번째 요소가 <li>가 아니라 텍스트노드임.. why? 줄바꿈 엔터!!
+		//줄바꿈이 없으면 첫번째 노드가 <li>요소가 됨. 하지만 불편!!
+
+		//<ul>의 첫번째 자식 element node 얻어오기
+		alert( list[0].firstElementChild.nodeName );
+		alert('첫번째 li의 텍스트 값 : ' + list[0].firstElementChild.firstChild.data);
+
+		//<ul>의 마지막 자식 element의 텍스트 값 얻어오기
+		alert('마지막 li의 텍스트 값 : ' + list[0].lastElementChild.textContent );
+
+	</script>
+
+	<hr/>
+
+	<!-- 형제 요소 찾아 제어하기..  -->
+	<div>
+		<p>Fruits List</p>
+		<ul>
+			<li>apple</li>
+			<li>banana</li>
+			<li>orange</li>
+		</ul>
+	</div>
+
+	<hr/>
+	<button onclick="clickBtn(this)">button</button>
+	<p></p>
+
+	<script type="text/javascript">
+
+		function clickBtn(e){			
+
+			var div=document.getElementsByTagName('div');
+
+			//div의 첫번째 자식인 p요소 찾기
+			var p= div[0].firstElementChild;
+
+			//p요소 다음에 있는 ul요소 찾기
+			var ul= p.nextSibling;//<-- 이렇게 하면 text node가 찾아짐. 줄바꿈 엔터!!
+			var ul= p.nextElementSibling;
+			alert( ul.nodeName );
+
+			// ul의 자식노드들..
+			alert( ul.childNodes.length ); //<- 왜 7 인가??
+
+			var str="";
+			for(var i=0; i<ul.childNodes.length; i++){
+				str += ul.childNodes[i].nodeName +"\n";
+			}
+			alert(str);  //<- li 사이사이 줄바꿈 엔터! 텍스트노드가 있어서!
+
+			//그러므로 childNodes보다는 nextElementSibling이 더 수월함.
+			alert("자식 엘리먼트 개수 : " + ul.childElementCount );
+			
+			var str="";
+
+			var li= ul.firstElementChild;
+			str += li.textContent+"\n";
+			for(var i=1; i<ul.childElementCount; i++){
+				li= li.nextElementSibling;
+				str += li.textContent+"\n";				
+			}
+			alert(str);
+
+			//경고창으로 출력결과를 보는 것은 확실히 불편함...		
+
+			//str을 클릭한 버튼 아래에 있는 p요소에 출력하기! 
+			//?? p요소를 어떻게 찾을까? 
+			// 방법 1. p요소의 태그이름으로 찾을 수 있으나 전체 문서의 p개수나 위치가 불명확하니..X
+			
+			// 방법 2. 지금 클릭 함수를 실행시킨 button 요소 객체를 알수만 있다면!!
+			alert(e.nodeName);
+
+			//- button요소의 다음 형제 요소
+			e.nextElementSibling.innerHTML= str;
+			e.nextElementSibling.innerHTML+= str;
+
+			// 아래 방법으로 텍스트를 넣는 것도 가능함..
+			// e.nextElementSibling.textContent= str;
+			// e.nextElementSibling.textContent+= str;
+
+
+			//요소의 텍스트를 수정할 수 있으므로 속성이나 스타일도 충분히 제어 가능..
+			//다음 예제에서..
+
+		}
+		
+	</script>
+	
+
+
+</body>
+</html>
