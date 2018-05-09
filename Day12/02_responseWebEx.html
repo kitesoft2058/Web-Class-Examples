@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">	
+	<title>반응형웹 페이지 예제</title>	
+
+	<style type="text/css">
+
+		*{padding: 0px; margin: 0px;}
+
+		#wrap{
+			width: 90%;
+			margin: 0 auto;
+			border:4px solid black;
+			/*font-size를 안주면 기본 div요소들에 여백이 생겨버림. */
+			/*font-size: 0px;*/
+			/*이방법은 자식들의 font-size에 영향을 주므로 자식에서 다시 font-size:16px를 줘야함.*/			
+		}
+
+		#wrap div{
+			/*display:inline-block 을 사용하다보면 기본적으로 좌우 여백이 있다.(4~6px)*/
+			display: inline-block;
+			height: 100px;
+			width: 100%;
+			margin-right: -6px;
+			/*font-size: 16px;*/
+		}
+
+
+		/*서브 div의 배경색 지정*/
+		#wrap div:first-child{  /*jQuery에서는 :first만 사용했으나 CSS에서는 first-child*/
+			background-color: aqua;
+		}
+
+		#wrap div:nth-child(2){
+			background-color: lightgreen;
+		}
+
+		#wrap div:nth-child(3){
+			background-color: orange;
+		}
+
+		#wrap div:nth-child(4){
+			background-color: indigo;
+		}
+
+		#wrap div:last-child{
+			background-color: yellow;
+		}
+
+		/*미디어 쿼리 적용*/
+		/*320px이상 : smart phone-portrait*/ 
+		@media all and (min-width: 320px){
+			#wrap div{ width: 100% }
+		}
+
+		/*600px이상 : smart phone-landscape or tablet*/ 
+		@media all and (min-width: 600px){
+			#wrap div{ width: 50%; }
+			#wrap div:last-child{ width: 100%; }					
+		}
+
+		/*800px이상 : desktop monitor*/ 
+		@media all and (min-width: 800px){
+			#wrap div{ width: 20%; }
+			#wrap div:last-child{ width: 20%; }
+		}		
+		
+	</style>
+</head>
+<body>
+
+	<div id="wrap">
+
+		<div>aa</div>
+		<div>bb</div>
+		<div>cc</div>
+		<div>dd</div>
+		<div>ee</div>
+		
+	</div>
+	
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<!-- 미디어쿼리 : 반응형웹을 위한 CSS의 선택적용. 2가지 방법 : android의 layou파일 여러개와 비슷. -->
+
+	<!-- 방법1. @media 키워드 이용 -->
+	<style type="text/css">
+
+		/*크기가 작은 것 부터 먼저 설정. 순서가 다르면 문제될 가능성 많음.*/
+		#aa{
+			width: 100px;
+			height: 100px;
+			background-color: green;
+		}
+
+		/*너비가 480px 이상이면*/
+		@media(min-width: 480px){ 
+			#aa{
+				width: 480px;
+				height: 200px;
+				background-color: yellow;
+			}
+		}
+	</style>
+
+	<!-- 방법2. media 속성 이용  -->	
+	<link rel="stylesheet" type="text/css" href="01_media.css" media="(min-width:600px) and (max-width:800px)"> <!--외부 스타일 시트-->
+
+	<!--내부 스타일 시트-->
+	<style type="text/css" media="(min-width: 800px)">
+		#aa{
+				width: 800px;
+				height: 200px;
+				background-color: aqua;
+			}		
+	</style> 
+
+</head>
+<body>
+
+	<div id="aa"></div>
+
+</body>
+</html>
